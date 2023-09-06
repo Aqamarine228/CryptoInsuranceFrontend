@@ -1,21 +1,21 @@
-import config from "../config"
 import axios from "axios"
-import store from "../store"
-import { MutationTypes } from "../store/mutation-types.ts"
 import router from "../router"
-import { toast } from "vue3-toastify"
+import backend from "@/config/backend";
+import store from "@/state/store";
+import Swal from "sweetalert2";
 
 const axiosInstance = axios.create({
-    baseURL: config.backend.url,
+    baseURL: backend.url,
     headers: {
-        Authorization: store.getters.isAuthenticated ? `Token ${store.getters.token}` : "",
+        Authorization: store.getters['auth/isLoggedIn'] ? `Token ${store.getters.token}` : "",
         "Content-Type": "application/x-www-form-urlencoded",
         Accept: "application/json",
+        "Accept-Language": store.getters['locale/currentLocale'],
     },
 })
 
 axiosInstance.interceptors.request.use(function (config) {
-    config.headers.Authorization = store.getters.isAuthenticated ? `Token ${store.getters.token}` : ""
+    config.headers.Authorization = store.getters.isLoggedIn ? `Token ${store.getters.token}` : ""
 
     return config
 })
@@ -28,25 +28,25 @@ axiosInstance.interceptors.response.use(
         }
 
         if (error.response.status === 401) {
-            console.log(axios.defaults.headers.common["Authorization"])
-            store.commit(MutationTypes.AUTH_LOGOUT)
+            store.commit('LOGOUT')
             return router.push({ name: "login" })
         }
 
-        let errorMessage = error.response.status
+        let errorMessage = error.response.data.message
 
-        switch (typeof error.response.data) {
-            case "object":
-                errorMessage = error.response.data[Object.keys(error.response.data)[0]]
-                break
-            case "string":
-                errorMessage = error.response.data
-                break
-        }
-
-        toast(errorMessage, {
-            type: "error",
+        Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: errorMessage,
+            showConfirmButton: false,
+            width: '300px',
+            timer: 1500,
         })
+
+
+        // toast(errorMessage, {
+        //     type: "error",
+        // })
 
         return Promise.reject(error)
     }

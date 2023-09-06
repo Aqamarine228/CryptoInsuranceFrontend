@@ -1,19 +1,9 @@
 <script>
-import {
-  required,
-  email,
-  helpers
-} from "@vuelidate/validators";
-import useVuelidate from "@vuelidate/core";
-import axios from 'axios';
 import appConfig from "../../../app.config";
+import axiosInstance from "@/plugins/axios";
+import backend from "@/config/backend";
 
 export default {
-  setup() {
-    return {
-      v$: useVuelidate()
-    };
-  },
   page: {
     title: "Register",
     meta: [{
@@ -25,61 +15,72 @@ export default {
   data() {
     return {
       user: {
-        username: "",
+        firstName: "",
+        lastName: "",
         email: "",
         password: "",
-        confirm_password: "",
+        confirmPassword: "",
       },
       submitted: false,
       regError: null,
       tryingToRegister: false,
       isRegisterError: false,
       registerSuccess: false,
+      processing: false,
+      validationErrors: {},
     };
-  },
-  validations: {
-    user: {
-      username: {
-        required: helpers.withMessage("Username is required", required),
-      },
-      email: {
-        required: helpers.withMessage("Email is required", required),
-        email: helpers.withMessage("Please enter valid email", email),
-      },
-      password: {
-        required: helpers.withMessage("Password is required", required),
-      },
-      confirm_password: {
-        required: helpers.withMessage("Confirm Password is required", required),
-      },
-    },
   },
   computed: {
     notification() {
       return this.$store ? this.$store.state.notification : null;
     },
+    hasPasswordErrors() {
+      return "password" in this.validationErrors
+    },
+    hasEmailErrors() {
+      return "email" in this.validationErrors
+    },
+    hasPasswordConfirmationErrors() {
+      return this.user.password && this.user.confirmPassword && this.user.password !== this.user.confirmPassword
+    },
+    signUpDisabled() {
+      return !this.user.firstName
+          || !this.user.lastName
+          || !this.user.email
+          || !this.user.password
+          || !this.user.confirmPassword
+          || this.hasPasswordConfirmationErrors
+          || this.processing
+    }
   },
   methods: {
-
-
-    // Try to register the user in with the email, username
-    // and password they provided.
-    async tryToRegisterIn() {
+    register() {
       this.submitted = true;
-      // stop here if form is invalid
-      this.v$.$touch();
-      const result = await axios.post('https://api-node.themesbrand.website/auth/signup', {
+      this.processing = true;
+
+      const data = {
         email: this.user.email,
+        first_name: this.user.firstName,
+        last_name: this.user.lastName,
         password: this.user.password,
-        confirm_password: this.user.confirm_password
-      });
-      if (result.data.status == 'errors') {
-        this.isRegisterError = true;
-        return this.regError = result.data.message;
+        password_confirmation: this.user.confirmPassword
       }
-      localStorage.setItem('jwt', result.data.token);
-      this.$router.push({
-        path: '/'
+
+      console.log(this.$route.query);
+
+      if (this.$route.query.inviter_id) {
+        console.log(this.$route.query.inviter_id);
+        data.inviter_id = this.$route.query.inviter_id
+      }
+
+      axiosInstance.post(backend.register, data).then((response) => {
+        this.$store.commit('SET_TOKEN', response)
+        this.$router.push({
+          path: '/'
+        });
+      }).catch((error) => {
+        this.validationErrors = error.response.data.errors
+        this.processing = false;
       });
 
     },
@@ -95,7 +96,7 @@ export default {
       <div class="shape">
 
         <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
-          viewBox="0 0 1440 120">
+             viewBox="0 0 1440 120">
           <path d="M 0,36 C 144,53.6 432,123.2 720,124 C 1008,124.8 1296,56.8 1440,40L1440 140L0 140z"></path>
         </svg>
       </div>
@@ -111,7 +112,6 @@ export default {
                   <img src="@/assets/images/logo-light.png" alt="" height="20">
                 </router-link>
               </div>
-              <p class="mt-3 fs-15 fw-medium">Premium Admin & Dashboard Template</p>
             </div>
           </b-col>
         </b-row>
@@ -126,9 +126,10 @@ export default {
                   <p class="text-muted">Get your free velzon account now</p>
                 </div>
                 <div class="p-2 mt-4">
-                  <form class="needs-validation" @submit.prevent="tryToRegisterIn">
+                  <form class="needs-validation" @submit.prevent="register">
                     <b-alert v-model="registerSuccess" class="mt-3" variant="success" dismissible>Registration
-                      successfull.</b-alert>
+                      successfull.
+                    </b-alert>
 
                     <b-alert v-model="isRegisterError" class="mt-3" variant="danger" dismissible>{{ regError }}
                     </b-alert>
@@ -137,77 +138,52 @@ export default {
                       {{ notification.message }}
                     </div>
                     <div class="mb-3">
-                      <label for="useremail" class="form-label">Email <span class="text-danger">*</span></label>
-                      <input type="email" class="form-control" v-model="user.email" id="useremail" :class="{
-                        'is-invalid': submitted && v$.user.email.$error,
-                      }" placeholder="Enter email address">
-                      <div v-for="(item, index) in v$.user.email.$errors" :key="index" class="invalid-feedback">
-                        <span v-if="item.$message">{{ item.$message }}</span>
+                      <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                      <input type="email" class="form-control" v-model="user.email" placeholder="Enter email address"
+                             required :class="{'is-invalid': hasEmailErrors}">
+                      <div v-for="(message, index) in this.validationErrors.email" :key="index"
+                           class="invalid-feedback">
+                        <span>{{ message }}</span>
                       </div>
                     </div>
                     <div class="mb-3">
-                      <label for="username" class="form-label">Username <span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" v-model="user.username" :class="{
-                        'is-invalid': submitted && v$.user.username.$error,
-                      }" id="username" placeholder="Enter username">
-                      <div v-if="submitted && v$.user.username.$error" class="invalid-feedback">
-                        <span v-if="v$.user.username.required.$message">{{
-                            v$.user.username.required.$message
-                        }}</span>
+                      <label for="first_name" class="form-label">First Name <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" v-model="user.firstName" placeholder="Enter first name"
+                             required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="last_name" class="form-label">Last Name <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" v-model="user.lastName" placeholder="Enter last name"
+                             required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
+                      <input type="password" class="form-control" v-model="user.password" placeholder="Enter password"
+                             required :class="{'is-invalid': hasPasswordErrors}">
+                      <div v-for="(message, index) in this.validationErrors.password" :key="index"
+                           class="invalid-feedback">
+                        <span>{{ message }}</span>
                       </div>
                     </div>
-
-                    <div class="mb-2">
-                      <label for="userpassword" class="form-label">Password <span class="text-danger">*</span></label>
-                      <input type="password" class="form-control" v-model="user.password" :class="{
-                        'is-invalid': submitted && v$.user.password.$error,
-                      }" id="userpassword" placeholder="Enter password">
-                      <div v-if="submitted && v$.user.password.$error" class="invalid-feedback">
-                        <span v-if="v$.user.password.required.$message">{{
-                            v$.user.password.required.$message
-                        }}</span>
-                      </div>
-                    </div>
-
-                    <div class="mb-2">
-                      <label for="userpassword" class="form-label">Confirm Password <span
+                    <div class="mb-3">
+                      <label for="password_confirmation" class="form-label">Password Confirmation <span
                           class="text-danger">*</span></label>
-                      <input type="password" class="form-control" v-model="user.confirm_password" :class="{
-                        'is-invalid': submitted && v$.user.password.$error,
-                      }" id="userconfirmpassword" placeholder="Enter password">
-                      <div v-if="submitted && v$.user.confirm_password.$error" class="invalid-feedback">
-                        <span v-if="v$.user.password.required.$message">{{
-                            v$.user.confirm_password.required.$message
-                        }}</span>
-                      </div>
+                      <input type="password" class="form-control" v-model="user.confirmPassword"
+                             placeholder="Enter password again"
+                             required :class="{'is-invalid': hasPasswordConfirmationErrors}">
                     </div>
-
                     <div class="mb-4">
-                      <p class="mb-0 fs-12 text-muted fst-italic">By registering you agree to the Velzon <b-link
-                          href="#" class="text-primary text-decoration-underline fst-normal fw-medium">Terms of Use
+                      <p class="mb-0 fs-12 text-muted fst-italic">By registering you agree to the
+                        <b-link
+                            href="#" class="text-primary text-decoration-underline fst-normal fw-medium">Terms of Use
                         </b-link>
                       </p>
                     </div>
 
                     <div class="mt-4">
-                      <b-button variant="success" class="w-100" type="submit">Sign Up</b-button>
-                    </div>
-
-                    <div class="mt-4 text-center">
-                      <div class="signin-other-title">
-                        <h5 class="fs-13 mb-4 title text-muted">Create account with</h5>
-                      </div>
-
-                      <div>
-                        <b-button type="button" variant="primary" class="btn-icon"><i
-                            class="ri-facebook-fill fs-16"></i></b-button>
-                        <b-button type="button" variant="danger" class="btn-icon ms-1"><i
-                            class="ri-google-fill fs-16"></i></b-button>
-                        <b-button type="button" variant="dark" class="btn-icon ms-1"><i
-                            class="ri-github-fill fs-16"></i></b-button>
-                        <b-button type="button" variant="info" class="btn-icon ms-1"><i
-                            class="ri-twitter-fill fs-16"></i></b-button>
-                      </div>
+                      <b-button variant="success" class="w-100" type="submit" :disabled="signUpDisabled">
+                        {{ processing ? $t('login.pleaseWait') + '...' : $t('login.signIn') }}
+                      </b-button>
                     </div>
                   </form>
 
@@ -216,8 +192,10 @@ export default {
             </b-card>
 
             <div class="mt-4 text-center">
-              <p class="mb-0">Already have an account ? <router-link to="/login"
-                  class="fw-semibold text-primary text-decoration-underline"> Signin </router-link>
+              <p class="mb-0">Already have an account ?
+                <router-link to="/login"
+                             class="fw-semibold text-primary text-decoration-underline"> Signin
+                </router-link>
               </p>
             </div>
           </b-col>

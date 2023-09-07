@@ -47,6 +47,7 @@ const i18n = createI18n({
   fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE || 'en',
   messages: loadLocaleMessages(),
   dateTimeFormats,
+  legacy: false, // you must set `false`, to use Composition API
 })
 
 export default i18n;

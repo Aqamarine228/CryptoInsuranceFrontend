@@ -122,24 +122,19 @@ export default {
 
               <b-card-body class="p-4">
                 <div class="text-center mt-2">
-                  <h5 class="text-primary">Create New Account</h5>
-                  <p class="text-muted">Get your free velzon account now</p>
+                  <h5 class="text-primary">{{ $t('register.createNewAccount') }}</h5>
                 </div>
                 <div class="p-2 mt-4">
                   <form class="needs-validation" @submit.prevent="register">
-                    <b-alert v-model="registerSuccess" class="mt-3" variant="success" dismissible>Registration
-                      successfull.
-                    </b-alert>
-
-                    <b-alert v-model="isRegisterError" class="mt-3" variant="danger" dismissible>{{ regError }}
-                    </b-alert>
 
                     <div v-if="notification.message" :class="'alert ' + notification.type">
                       {{ notification.message }}
                     </div>
                     <div class="mb-3">
-                      <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
-                      <input type="email" class="form-control" v-model="user.email" placeholder="Enter email address"
+                      <label for="email" class="form-label">{{ $t('register.email') }} <span
+                          class="text-danger">*</span></label>
+                      <input type="email" class="form-control" v-model="user.email"
+                             :placeholder="$t('register.enterEmail')"
                              required :class="{'is-invalid': hasEmailErrors}">
                       <div v-for="(message, index) in this.validationErrors.email" :key="index"
                            class="invalid-feedback">
@@ -147,18 +142,24 @@ export default {
                       </div>
                     </div>
                     <div class="mb-3">
-                      <label for="first_name" class="form-label">First Name <span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" v-model="user.firstName" placeholder="Enter first name"
+                      <label for="first_name" class="form-label">{{ $t('register.firstName') }} <span
+                          class="text-danger">*</span></label>
+                      <input type="text" class="form-control" v-model="user.firstName"
+                             :placeholder="$t('register.enterFirstName')"
                              required>
                     </div>
                     <div class="mb-3">
-                      <label for="last_name" class="form-label">Last Name <span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" v-model="user.lastName" placeholder="Enter last name"
+                      <label for="last_name" class="form-label">{{ $t('register.lastName') }} <span
+                          class="text-danger">*</span></label>
+                      <input type="text" class="form-control" v-model="user.lastName"
+                             :placeholder="$t('register.enterLastName')"
                              required>
                     </div>
                     <div class="mb-3">
-                      <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
-                      <input type="password" class="form-control" v-model="user.password" placeholder="Enter password"
+                      <label for="password" class="form-label">{{ $t('register.password') }} <span
+                          class="text-danger">*</span></label>
+                      <input type="password" class="form-control" v-model="user.password"
+                             :placeholder="$t('register.enterPassword')"
                              required :class="{'is-invalid': hasPasswordErrors}">
                       <div v-for="(message, index) in this.validationErrors.password" :key="index"
                            class="invalid-feedback">
@@ -166,23 +167,24 @@ export default {
                       </div>
                     </div>
                     <div class="mb-3">
-                      <label for="password_confirmation" class="form-label">Password Confirmation <span
+                      <label for="password_confirmation" class="form-label">{{$t('register.passwordConfirmation')}} <span
                           class="text-danger">*</span></label>
                       <input type="password" class="form-control" v-model="user.confirmPassword"
-                             placeholder="Enter password again"
+                             :placeholder="$t('register.enterPasswordConfirmation')"
                              required :class="{'is-invalid': hasPasswordConfirmationErrors}">
                     </div>
                     <div class="mb-4">
-                      <p class="mb-0 fs-12 text-muted fst-italic">By registering you agree to the
+                      <p class="mb-0 fs-12 text-muted fst-italic">{{$t('register.byRegistrationYouAgree')}}
                         <b-link
-                            href="#" class="text-primary text-decoration-underline fst-normal fw-medium">Terms of Use
+                            href="#" class="text-primary text-decoration-underline fst-normal fw-medium">
+                          {{ $t('register.termsOfUse')}}
                         </b-link>
                       </p>
                     </div>
 
                     <div class="mt-4">
                       <b-button variant="success" class="w-100" type="submit" :disabled="signUpDisabled">
-                        {{ processing ? $t('login.pleaseWait') + '...' : $t('login.signIn') }}
+                        {{ processing ? $t('register.pleaseWait') + '...' : $t('register.signIn') }}
                       </b-button>
                     </div>
                   </form>
@@ -192,9 +194,9 @@ export default {
             </b-card>
 
             <div class="mt-4 text-center">
-              <p class="mb-0">Already have an account ?
+              <p class="mb-0">{{$t('register.alreadyHaveAnAccount')}} ?
                 <router-link to="/login"
-                             class="fw-semibold text-primary text-decoration-underline"> Signin
+                             class="fw-semibold text-primary text-decoration-underline">{{$t('register.signIn')}}
                 </router-link>
               </p>
             </div>

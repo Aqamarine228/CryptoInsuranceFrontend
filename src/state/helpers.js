@@ -28,8 +28,6 @@ export const layoutMethods = mapActions('layout',
 ['changeLayoutType', 'changeLayoutWidth', 'changeSidebarSize', 'changeTopbar', 'changeMode', 'changePosition', 'changeSidebarView',
  'changeSidebarColor','changeSidebarImage','changePreloader', 'changeVisibility'])
 
-export const authFackMethods = mapActions('authfack', ['login', 'registeruser', 'logout'])
-
 export const notificationMethods = mapActions('notification', ['success', 'error', 'clear'])
 
 export const todoComputed = {

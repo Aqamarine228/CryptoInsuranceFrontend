@@ -1,4 +1,4 @@
-import store from "@/state/store";
+import {authenticated, unauthenticated, withUser} from "@/router/middlewares";
 
 export default [
   {
@@ -7,16 +7,7 @@ export default [
     component: () => import("../views/account/login.vue"),
     meta: {
       title: "Login",
-      beforeResolve(routeTo, routeFrom, next) {
-        // If the user is already logged in
-        if (store.getters["auth/loggedIn"]) {
-          // Redirect to the home page instead
-          next({ name: "default" });
-        } else {
-          // Continue to the login page
-          next();
-        }
-      },
+      middleware: [unauthenticated],
     },
   },
   {
@@ -25,17 +16,26 @@ export default [
     component: () => import("../views/account/register.vue"),
     meta: {
       title: "Register",
-      beforeResolve(routeTo, routeFrom, next) {
-        // If the user is already logged in
-        if (store.getters["auth/loggedIn"]) {
-          // Redirect to the home page instead
-          next({ name: "default" });
-        } else {
-          // Continue to the login page
-          next();
-        }
-      },
+      middleware: [unauthenticated],
     },
+  },
+  {
+    path: "/email-verification",
+    name: "Email verification",
+    component: () => import("../views/account/email-verification.vue"),
+    meta: {
+      title: "Email Verification",
+      middleware: [authenticated, withUser],
+    }
+  },
+  {
+    path: "/email-verified",
+    name: "Email verified",
+    component: () => import("../views/account/email-verified.vue"),
+    meta: {
+      name: "Email verified",
+      middleware: []
+    }
   },
   {
     path: "/forgot-password",
@@ -43,16 +43,6 @@ export default [
     component: () => import("../views/account/forgot-password.vue"),
     meta: {
       title: "Forgot Password",
-      beforeResolve(routeTo, routeFrom, next) {
-        // If the user is already logged in
-        if (store.getters["auth/loggedIn"]) {
-          // Redirect to the home page instead
-          next({ name: "default" });
-        } else {
-          // Continue to the login page
-          next();
-        }
-      },
     },
   },
   {
@@ -63,7 +53,7 @@ export default [
       beforeResolve(routeTo, routeFrom, next) {
         localStorage.clear();
         sessionStorage.clear();
-        next();
+        next({name: 'login'});
       },
     },
     component: () => import("../views/auth/logout/basic")
@@ -73,7 +63,6 @@ export default [
     name: "default",
     meta: {
       title: "Dashboard",
-      authRequired: true,
     },
     component: () => import("../views/dashboard/ecommerce/index.vue"),
   }

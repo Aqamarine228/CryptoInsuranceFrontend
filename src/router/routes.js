@@ -96,5 +96,29 @@ export default [
       title: "Insurance",
     },
     component: () => import("../views/insurance/index.vue"),
+  },
+  {
+    path: "/insurance/create-own",
+    name: "Create own insurance",
+    meta: {
+      title: "Create Own Insurance"
+    },
+    component: () => import("../views/insurance/create-own.vue")
+  },
+  {
+    path: "/insurance/invoice/:id",
+    name: "Insurance invoice",
+    meta: {
+      title: "Insurance Invoice",
+    },
+    component: () => import("../views/insurance/invoice.vue")
+  },
+  {
+    path: "/insurance/option/:id/request",
+    name: "Insurance request",
+    meta: {
+      title: "Insurance Request",
+    },
+    component: () => import("../views/insurance/request.vue")
   }
 ];

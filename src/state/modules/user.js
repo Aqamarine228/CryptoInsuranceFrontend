@@ -22,5 +22,8 @@ export const getters = {
     },
     hasReferralRequest(state) {
         return state.currentUser?.has_referral_request
-    }
+    },
+    hasInsurance(state) {
+        return state.currentUser?.has_insurance
+    },
 }

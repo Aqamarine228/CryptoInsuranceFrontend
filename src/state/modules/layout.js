@@ -1,5 +1,5 @@
 export const state = {
-  layoutType: 'horizontal',
+  layoutType: 'vertical',
   layoutWidth: 'fluid',
   sidebarSize: 'lg',
   topbar: 'dark',
@@ -8,7 +8,7 @@ export const state = {
   sidebarView: 'default',
   sidebarColor: 'dark',
   sidebarImage: 'none',
-  preloader: 'disable',
+  preloader: 'enable',
   visibility: 'show'
 };
 

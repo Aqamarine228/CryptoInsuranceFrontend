@@ -61,9 +61,10 @@ function verifyEmail() {
 
               <b-card-body class="p-4">
                 <div class="mb-4">
-                  <div class="avatar-lg mx-auto">
-                    <div class="avatar-title bg-light text-primary display-5 rounded-circle">
-                      <i :class=" success ? 'ri-check-line' : 'ri-error-warning-line'"></i>
+                  <div class="avatar-lg mx-auto mt-2">
+                    <div class="avatar-title bg-light text-primary display-3 rounded-circle"
+                         :class="success ? 'text-success' : 'text-danger'">
+                      <i :class=" success ? 'ri-checkbox-circle-fill' : 'ri-error-warning-fill'"></i>
                     </div>
                   </div>
                 </div>
@@ -71,7 +72,7 @@ function verifyEmail() {
                 <div class="p-2 mt-4">
                   <div class="text-muted text-center mb-4 mx-lg-3">
                     <h4 v-if="success">{{ $t('verify-email.verifiedSuccessfully') }}</h4>
-                    <h4 v-else>{{$t('verify-email.verificationError')}}</h4>
+                    <h4 v-else>{{ $t('verify-email.verificationError') }}</h4>
                     <b-alert v-if="!success" v-model="error" variant="danger" class="mt-3">{{ error }}</b-alert>
                   </div>
                 </div>

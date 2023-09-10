@@ -69,7 +69,6 @@ export default {
       console.log(this.$route.query);
 
       if (this.$route.query.inviter_id) {
-        console.log(this.$route.query.inviter_id);
         data.inviter_id = this.$route.query.inviter_id
       }
 
@@ -79,8 +78,8 @@ export default {
           path: '/'
         });
       }).catch((error) => {
-        this.validationErrors = error.response.data.errors
         this.processing = false;
+        this.validationErrors = error.response.data.errors
       });
 
     },

@@ -38,6 +38,7 @@
     "echarts": "^5.4.2",
     "feather-icons": "^4.29.0",
     "firebase": "^10.0.0",
+    "gridjs-vue": "^5.0.4",
     "highlight.js": "^11.8.0",
     "leaflet": "^1.9.4",
     "lottie-web": "^5.12.2",

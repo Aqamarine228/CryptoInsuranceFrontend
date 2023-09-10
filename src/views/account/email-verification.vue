@@ -23,7 +23,7 @@ onMounted(async () => {
 const getUser = async () => {
   loading.value = true;
   const user = await axiosInstance.get(backend.user);
-  store.commit('auth/SET_CURRENT_USER', user);
+  store.commit('user/SET_CURRENT_USER', user);
 
   if (user.email_verified) {
     await router.push({
@@ -56,7 +56,7 @@ const resendEmail = async () => {
   })
 }
 
-const userEmail = computed(() => store.getters['auth/user'].email)
+const userEmail = computed(() => store.getters['user/user'].email)
 
 </script>
 

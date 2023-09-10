@@ -25,7 +25,8 @@ export default {
         <div class="page-title-right">
           <ol class="breadcrumb m-0">
             <li class="breadcrumb-item" v-for="(item, index) in items" :key="index" :class="{ active: item[0] }">
-              <b-link href="javascript: void(0);">{{ item.text }}</b-link>
+              <b-link v-if="item.active" href="javascript: void(0);">{{ item.text }}</b-link>
+              <router-link :to="item.href" v-else>{{ item.text}}</router-link>
             </li>
           </ol>
         </div>

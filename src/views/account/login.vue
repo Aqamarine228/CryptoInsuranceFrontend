@@ -94,7 +94,7 @@ export default {
                   <p class="text-muted">{{ $t('login.signInToContinue') }}.</p>
                 </div>
                 <div class="p-2 mt-4">
-                  <b-alert v-model="authError" variant="danger" class="mt-3" dismissible>{{ authError }}</b-alert>
+                  <b-alert v-model="isAuthError" variant="danger" class="mt-3" dismissible>{{ authError }}</b-alert>
 
                   <div>
 

@@ -1,4 +1,7 @@
-import {authenticated, unauthenticated, withUser} from "@/router/middlewares";
+import {authenticated, defaultMiddlewares, noReferralRequests, unauthenticated, withUser} from "@/router/middlewares";
+import store from "@/state/store";
+
+const becomeReferralMiddlewares = [...defaultMiddlewares, noReferralRequests]
 
 export default [
   {
@@ -51,10 +54,12 @@ export default [
     meta: {
       title: "Logout", authRequired: true,
       beforeResolve(routeTo, routeFrom, next) {
+        store.commit('auth/LOGOUT');
         localStorage.clear();
         sessionStorage.clear();
         next({name: 'login'});
       },
+      middleware: [authenticated]
     },
     component: () => import("../views/auth/logout/basic")
   },
@@ -65,5 +70,31 @@ export default [
       title: "Dashboard",
     },
     component: () => import("../views/dashboard/ecommerce/index.vue"),
+  },
+  {
+    path: "/referrals",
+    name: "referrals",
+    meta: {
+      title: "Referrals",
+    },
+    component: () => import("../views/referrals/index.vue"),
+  },
+  {
+    path: "/referrals/become-referral",
+    name: "Become referral",
+    meta: {
+      title: "Become Referral",
+      middleware: becomeReferralMiddlewares,
+    },
+    component: () => import("../views/referrals/become-referral.vue"),
+
+  },
+  {
+    path: "/insurance",
+    name: "Insurance",
+    meta: {
+      title: "Insurance",
+    },
+    component: () => import("../views/insurance/index.vue"),
   }
 ];

@@ -22,24 +22,32 @@ const unauthenticated = ({next, store}) => {
 }
 
 const withUser = ({next, store}) => {
-    if (store.getters["auth/user"]) {
+    if (store.getters["user/user"]) {
         next();
     }
 
     axiosInstance.get(backend.user).then((response) => {
-        store.commit('auth/SET_CURRENT_USER', response)
+        store.commit('user/SET_CURRENT_USER', response)
         next();
     })
 }
 
 const emailVerified = ({next, store}) => {
-    if (store.getters["auth/user"].email_verified) {
+    if (store.getters["user/isEmailVerified"]) {
         next()
     }
 
     next({name: 'Email verification'})
 }
 
+const noReferralRequests = ({next, store}) => {
+    if (!store.getters["user/hasReferralRequest"]) {
+        next();
+    }
+
+    next({name: 'referrals'})
+}
+
 const defaultMiddlewares = [authenticated, withUser, emailVerified]
 
-export {authenticated, unauthenticated, withUser, defaultMiddlewares}
+export {authenticated, unauthenticated, withUser, noReferralRequests, defaultMiddlewares}

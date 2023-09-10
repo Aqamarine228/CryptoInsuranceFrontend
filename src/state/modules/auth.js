@@ -1,5 +1,4 @@
 export const state = {
-    currentUser: undefined,
     token: sessionStorage.getItem('auth.token'),
 }
 
@@ -23,9 +22,6 @@ export const getters = {
     token(state) {
         return state.token
     },
-    user(state) {
-        return state.currentUser
-    }
 }
 
 export const actions = {

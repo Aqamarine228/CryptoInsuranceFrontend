@@ -16,11 +16,6 @@ import VueFeather from 'vue-feather';
 import '@/assets/scss/config/saas/app.scss';
 import '@vueform/slider/themes/default.css';
 import '@/assets/scss/mermaid.min.css';
-// import axiosInstance from "@/plugins/axios";
-// import VueAxios from "vue-axios";
-
-console.log(process.env);
-
 
 AOS.init({
     easing: 'ease-out-back',

@@ -3,5 +3,7 @@ export default {
     login: '/v1/login',
     register: '/v1/register',
     user: '/v1/user',
-    resendVerificationEmail: '/v1/email/resend-verification'
+    resendVerificationEmail: '/v1/email/resend-verification',
+    referralRequest: '/v1/referral-request',
+    referralWidgetsData: '/v1/referrals/widgets-data',
 }

@@ -12,6 +12,7 @@ export default {
     createInsuranceInvoiceFromOptions: '/v1/insurance-invoice/custom',
     createInsuranceInvoiceFromPack: '/v1/insurance-invoice/from-pack',
     insurance: '/v1/insurance',
+    referralIncome: '/v1/referral-income',
     insuranceInvoice: (id) => `/v1/insurance-invoice/${id}`,
     insuranceOption: (id) => `/v1/insurance-option/${id}`,
     createInsuranceRequest: (id) => `/v1/insurance-request/${id}`,

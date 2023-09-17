@@ -13,7 +13,7 @@ const loading = ref(true);
 const crmWidgets = ref([
   {
     id: 1,
-    label: "Referrals Count",
+    label: "referrals.referralsCount",
     icon: "ri-space-ship-line",
     counter: 197,
     decimals: 0,
@@ -22,7 +22,7 @@ const crmWidgets = ref([
   },
   {
     id: 2,
-    label: "Total Profit",
+    label: "referrals.totalProfit",
     icon: "ri-exchange-dollar-line",
     counter: 489.4,
     decimals: 1,
@@ -31,7 +31,7 @@ const crmWidgets = ref([
   },
   {
     id: 3,
-    label: "Today's New Referrals Count",
+    label: "referrals.todayReferralsCount",
     icon: "ri-pulse-line",
     counter: 32.89,
     decimals: 2,
@@ -40,7 +40,7 @@ const crmWidgets = ref([
   },
   {
     id: 4,
-    label: "Today's Profit",
+    label: "referrals.todayProfit",
     icon: "ri-trophy-line",
     counter: 1596.5,
     decimals: 1,
@@ -69,7 +69,7 @@ function getWidgetData() {
         <b-col v-for="(item, index) of crmWidgets" :key="index">
           <div class="py-4 px-3">
             <h5 class="text-muted text-uppercase fs-13">
-              {{ item.label }}
+              {{ this.$t(item.label) }}
             </h5>
             <div class="d-flex align-items-center">
               <div class="flex-shrink-0">

@@ -8,6 +8,7 @@
   "login.signIn": "Sign In",
   "login.dontHaveAnAccount": "Don't have an account",
   "login.pleaseWait": "Please Wait",
+
   "register.signUp": "Sign up",
   "register.signIn": "Sign In",
   "register.pleaseWait": "Please Wait",
@@ -25,6 +26,7 @@
   "register.enterFirstName": "Enter First Name",
   "register.enterLastName": "Enter Last Name",
   "register.enterPasswordConfirmation": "Enter password again",
+
   "verify-email.weHaveSentYouTheLinkTo": "We have sent you the link to",
   "verify-email.verifyYourEmail": "Verify your email",
   "verify-email.confirm": "Confirm Verification",
@@ -34,6 +36,7 @@
   "verify-email.notVerified": "Email is not verified",
   "verify-email.verifiedSuccessfully": "Email verified successfully",
   "verify-email.verificationError": "There was an error while verifying the email",
+
   "menu.title": "menu",
   "menu.insurance": "Insurance",
   "menu.dashboard": "Dashboard",
@@ -42,15 +45,39 @@
   "menu.createOwnInsurance": "Create Own Insurance",
   "menu.insuranceInvoice": "Insurance Invoice",
   "menu.insuranceRequest": "Insurance Request",
+
   "referrals.programTitle": "Our Referral Program",
   "referrals.becomeReferral": "Become Referral",
   "referrals.thanksForSubmission": "Thanks for Submission",
   "referrals.submittedText": "Your request was submitted and will be reviewed. You will be notified by notification inside our application and emailed",
+
+  "referrals.referralsCount": "Referrals Count",
+  "referrals.totalProfit": "Total Profit",
+  "referrals.todayReferralsCount": "Today's New Referrals Count",
+  "referrals.todayProfit": "Today's Profit",
+
+  "referrals.referralLink": "Referral Link",
+
+  "referrals.referralIncome": "Referral Income",
+
+  "referrals.type": "Type",
+  "referrals.amount": "Amount",
+  "referrals.date": "Date",
+
   "become-referral.submit": "Submit",
   "become-referral.submitting": "Submiting",
   "become-referral.telegramUsername": "Telegram Username",
   "become-referral.telegramUsernameDescription": "You must allow anybody to send you messages via username",
   "become-referral.document": "Document Photo",
   "become-referral.documentFieldDescription": "Provide any document that can verify your identity",
-  "become-referral.address": "Address"
+  "become-referral.address": "Address",
+
+  "pagination.next": "Next",
+  "pagination.displayingRecords": "Total of {total} records",
+  "pagination.previous": "Previous",
+
+  "timePeriods.today": "Today",
+  "timePeriods.week": "Week",
+  "timePeriods.month": "Month",
+  "timePeriods.year": "Year"
 }

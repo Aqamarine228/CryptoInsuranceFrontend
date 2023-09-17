@@ -37,5 +37,10 @@
     "menu.title": "Меню",
     "menu.insurance": "Страховка",
     "menu.dashboard": "Дашборд",
-    "menu.referrals": "Referrals"
+    "menu.referrals": "Referrals",
+
+    "referrals.referralsCount": "фывафыва",
+    "referrals.totalProfit": "Total Profit",
+    "referrals.todayReferralsCount": "Today's New Referrals Count",
+    "referrals.todayProfit": "Today's Profit"
 }

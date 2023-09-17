@@ -7998,10 +7998,13 @@ simplebar-core@^1.2.4:
     lodash "^4.17.21"
     lodash-es "^4.17.21"
 
-simplebar-vue3@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/simplebar-vue3/-/simplebar-vue3-0.2.0.tgz#8c9bed1ecc4fdfa19501797a9f3f5a159af1acca"
-  integrity sha512-07v1y9g4G9Z88uJXsGAM9G4UDhAMVJABthRrnmMNjJstA1KjfmCzYhmUMyYQfEo+6lyhNfhU0d3La9rUB3lShQ==
+simplebar-vue@^2.3.3:
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/simplebar-vue/-/simplebar-vue-2.3.3.tgz#9310d304a916f6b303235abc6ee5ff9e087e7d69"
+  integrity sha512-srx6us5Dk6jTU7+Pk+X1DfUqa2ZGeT/LXJGp3j6VuMyK16h20sxtMk//jYrN5E8BxvfkakOj8HodGH1JQpAE7Q==
+  dependencies:
+    simplebar-core "^1.2.4"
+    vue-demi "^0.13.11"
 
 simplebar@^6.2.5:
   version "6.2.5"

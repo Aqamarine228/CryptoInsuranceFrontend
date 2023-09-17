@@ -48,7 +48,7 @@
     "prismjs": "^1.29.0",
     "sass-loader": "^13.3.2",
     "simplebar": "^6.2.5",
-    "simplebar-vue3": "^0.2.0",
+    "simplebar-vue": "^2.3.3",
     "sweetalert2": "^11.7.16",
     "swiper": "^10.0.4",
     "vue": "3.3.4",

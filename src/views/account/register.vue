@@ -73,7 +73,7 @@ export default {
       }
 
       axiosInstance.post(backend.register, data).then((response) => {
-        this.$store.commit('SET_TOKEN', response)
+        this.$store.commit('auth/SET_TOKEN', response)
         this.$router.push({
           path: '/'
         });

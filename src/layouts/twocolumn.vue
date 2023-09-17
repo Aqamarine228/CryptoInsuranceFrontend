@@ -1,8 +1,8 @@
 <script>
 import router from "@/router";
-import {
+import
   SimpleBar
-} from "simplebar-vue3";
+  from "simplebar-vue";
 import {
   layoutComputed
 } from "@/state/helpers";
@@ -70,7 +70,7 @@ export default {
       const icons = document.getElementById("two-column-menu");
       if (icons) {
         const activeIcons = Array.from(
-          icons.querySelectorAll(".nav-icon.active")
+            icons.querySelectorAll(".nav-icon.active")
         );
         activeIcons.forEach((item) => {
           item.classList.remove("active");
@@ -100,9 +100,9 @@ export default {
 
     activateIconSidebarActive(id) {
       var menu = document.querySelector(
-        "#two-column-menu .simplebar-content-wrapper a[href='" +
-        id +
-        "'].nav-icon"
+          "#two-column-menu .simplebar-content-wrapper a[href='" +
+          id +
+          "'].nav-icon"
       );
       if (menu !== null) {
         menu.classList.add("active");
@@ -127,7 +127,7 @@ export default {
             }
           }
           this.activateIconSidebarActive("#" + parentCollapseDiv.parentElement.closest(".collapse.menu-dropdown")
-            .getAttribute("id"));
+              .getAttribute("id"));
 
           parentCollapseDiv.parentElement.closest(".collapse").classList.add("show");
           if (parentCollapseDiv.parentElement.closest(".collapse").previousElementSibling)
@@ -202,7 +202,7 @@ export default {
 
 <template>
   <div id="layout-wrapper">
-    <NavBar />
+    <NavBar/>
     <div>
       <!-- ========== Left Sidebar Start ========== -->
       <!-- ========== App Menu ========== -->
@@ -212,23 +212,23 @@ export default {
           <!-- Dark Logo-->
           <router-link to="/" class="logo logo-dark">
             <span class="logo-sm">
-              <img src="@/assets/images/logo-sm.png" alt="" height="22" />
+              <img src="@/assets/images/logo-sm.png" alt="" height="22"/>
             </span>
             <span class="logo-lg">
-              <img src="@/assets/images/logo-dark.png" alt="" height="17" />
+              <img src="@/assets/images/logo-dark.png" alt="" height="17"/>
             </span>
           </router-link>
           <!-- Light Logo-->
           <router-link to="/" class="logo logo-light">
             <span class="logo-sm">
-              <img src="@/assets/images/logo-sm.png" alt="" height="22" />
+              <img src="@/assets/images/logo-sm.png" alt="" height="22"/>
             </span>
             <span class="logo-lg">
-              <img src="@/assets/images/logo-light.png" alt="" height="17" />
+              <img src="@/assets/images/logo-light.png" alt="" height="17"/>
             </span>
           </router-link>
           <button type="button" class=" btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
-            id="vertical-hover">
+                  id="vertical-hover">
             <i class="ri-record-circle-line"></i>
           </button>
         </div>
@@ -237,10 +237,10 @@ export default {
           <b-container fluid>
             <div id="two-column-menu">
               <SimpleBar class="twocolumn-iconview list-unstyled">
-                <b-link href="#" class="logo"><img src="@/assets/images/logo-sm.png" alt="Logo" height="22" /></b-link>
+                <b-link href="#" class="logo"><img src="@/assets/images/logo-sm.png" alt="Logo" height="22"/></b-link>
                 <li>
                   <b-link class="nav-icon" href="#sidebarDashboards" role="button"
-                    @click.prevent="updateMenu('sidebarDashboards')">
+                          @click.prevent="updateMenu('sidebarDashboards')">
                     <i class="bx bxs-dashboard"></i>
                   </b-link>
                 </li>
@@ -255,13 +255,14 @@ export default {
                   </b-link>
                 </li>
                 <li>
-                  <b-link class="nav-icon" href="#sidebarPages" role="button" @click.prevent="updateMenu('sidebarPages')">
+                  <b-link class="nav-icon" href="#sidebarPages" role="button"
+                          @click.prevent="updateMenu('sidebarPages')">
                     <i class="bx bx-file"></i>
                   </b-link>
                 </li>
                 <li>
                   <b-link class="nav-icon" href="#sidebarlanding" role="button"
-                    @click.prevent="updateMenu('sidebarlanding')">
+                          @click.prevent="updateMenu('sidebarlanding')">
                     <i class="ri-rocket-line"></i>
                   </b-link>
                 </li>
@@ -272,7 +273,7 @@ export default {
                 </li>
                 <li>
                   <b-link class="nav-icon" href="#sidebarAdvanceUI" role="button"
-                    @click.prevent="updateMenu('sidebarAdvanceUI')">
+                          @click.prevent="updateMenu('sidebarAdvanceUI')">
                     <i class="bx bx-briefcase-alt"></i>
                   </b-link>
                 </li>
@@ -282,24 +283,28 @@ export default {
                   </router-link>
                 </li>
                 <li>
-                  <b-link class="nav-icon" href="#sidebarForms" role="button" @click.prevent="updateMenu('sidebarForms')">
+                  <b-link class="nav-icon" href="#sidebarForms" role="button"
+                          @click.prevent="updateMenu('sidebarForms')">
                     <i class="bx bx-receipt"></i>
                   </b-link>
                 </li>
                 <li>
-                  <b-link class="nav-icon" href="#sidebarTables" role="button" @click.prevent="updateMenu('sidebarTables')">
+                  <b-link class="nav-icon" href="#sidebarTables" role="button"
+                          @click.prevent="updateMenu('sidebarTables')">
                     <i class="bx bx-table"></i>
                   </b-link>
                 </li>
 
                 <li>
-                  <b-link class="nav-icon" href="#sidebarCharts" role="button" @click.prevent="updateMenu('sidebarCharts')">
+                  <b-link class="nav-icon" href="#sidebarCharts" role="button"
+                          @click.prevent="updateMenu('sidebarCharts')">
                     <i class="bx bx-doughnut-chart"></i>
                   </b-link>
                 </li>
 
                 <li>
-                  <b-link class="nav-icon" href="#sidebarIcons" role="button" @click.prevent="updateMenu('sidebarIcons')">
+                  <b-link class="nav-icon" href="#sidebarIcons" role="button"
+                          @click.prevent="updateMenu('sidebarIcons')">
                     <i class="bx bx-tone"></i>
                   </b-link>
                 </li>
@@ -312,7 +317,7 @@ export default {
 
                 <li>
                   <b-link class="nav-icon" href="#sidebarMultilevel" role="button"
-                    @click.prevent="updateMenu('sidebarMultilevel')">
+                          @click.prevent="updateMenu('sidebarMultilevel')">
                     <i class="bx bx-sitemap"></i>
                   </b-link>
                 </li>
@@ -380,7 +385,7 @@ export default {
                       </li>
                       <li class="nav-item">
                         <b-link href="#sidebaremail" class="nav-link" data-bs-toggle="collapse" role="button"
-                          aria-expanded="false" aria-controls="sidebaremail" data-key="t-projects">
+                                aria-expanded="false" aria-controls="sidebaremail" data-key="t-projects">
                           {{ $t("t-email") }}
                         </b-link>
                         <div class="collapse menu-dropdown" id="sidebaremail">
@@ -392,7 +397,7 @@ export default {
                             </li>
                             <li class="nav-item">
                               <b-link href="#sidebarsubemail" class="nav-link" data-bs-toggle="collapse" role="button"
-                                aria-expanded="false" aria-controls="sidebarsubemail" data-key="t-projects">
+                                      aria-expanded="false" aria-controls="sidebarsubemail" data-key="t-projects">
                                 {{ $t("t-email-templates") }}
                               </b-link>
                               <div class="collapse menu-dropdown" id="sidebarsubemail">
@@ -415,7 +420,7 @@ export default {
                       </li>
                       <li class="nav-item">
                         <b-link href="#sidebarEcommerce" class="nav-link" data-bs-toggle="collapse" role="button"
-                          aria-expanded="false" aria-controls="sidebarEcommerce" data-key="t-ecommerce">
+                                aria-expanded="false" aria-controls="sidebarEcommerce" data-key="t-ecommerce">
                           {{ $t("t-ecommerce") }}
                         </b-link>
                         <div class="collapse menu-dropdown" id="sidebarEcommerce">
@@ -427,7 +432,7 @@ export default {
                             </li>
                             <li class="nav-item">
                               <router-link to="#" class="nav-link"
-                                data-key="t-product-Details">
+                                           data-key="t-product-Details">
                                 {{ $t("t-product-Details") }}
                               </router-link>
                             </li>
@@ -476,7 +481,7 @@ export default {
                       </li>
                       <li class="nav-item">
                         <b-link href="#sidebarProjects" class="nav-link" data-bs-toggle="collapse" role="button"
-                          aria-expanded="false" aria-controls="sidebarProjects" data-key="t-projects">
+                                aria-expanded="false" aria-controls="sidebarProjects" data-key="t-projects">
                           {{ $t("t-projects") }}
                         </b-link>
                         <div class="collapse menu-dropdown" id="sidebarProjects">
@@ -501,7 +506,7 @@ export default {
                       </li>
                       <li class="nav-item">
                         <b-link href="#sidebarTasks" class="nav-link" data-bs-toggle="collapse" role="button"
-                          aria-expanded="false" aria-controls="sidebarTasks" data-key="t-tasks">
+                                aria-expanded="false" aria-controls="sidebarTasks" data-key="t-tasks">
                           {{ $t("t-tasks") }}
                         </b-link>
                         <div class="collapse menu-dropdown" id="sidebarTasks">
@@ -526,7 +531,7 @@ export default {
                       </li>
                       <li class="nav-item">
                         <b-link href="#sidebarCRM" class="nav-link" data-bs-toggle="collapse" role="button"
-                          aria-expanded="false" aria-controls="sidebarCRM" data-key="t-crm">
+                                aria-expanded="false" aria-controls="sidebarCRM" data-key="t-crm">
                           {{ $t("t-crm") }}
                         </b-link>
                         <div class="collapse menu-dropdown" id="sidebarCRM">
@@ -556,7 +561,7 @@ export default {
                       </li>
                       <li class="nav-item">
                         <b-link href="#sidebarCrypto" class="nav-link" data-bs-toggle="collapse" role="button"
-                          aria-expanded="false" aria-controls="sidebarCrypto" data-key="t-crypto">
+                                aria-expanded="false" aria-controls="sidebarCrypto" data-key="t-crypto">
                           {{ $t("t-crypto") }}
                         </b-link>
                         <div class="collapse menu-dropdown" id="sidebarCrypto">
@@ -596,7 +601,7 @@ export default {
                       </li>
                       <li class="nav-item">
                         <b-link href="#sidebarInvoices" class="nav-link" data-bs-toggle="collapse" role="button"
-                          aria-expanded="false" aria-controls="sidebarInvoices" data-key="t-invoices">
+                                aria-expanded="false" aria-controls="sidebarInvoices" data-key="t-invoices">
                           {{ $t("t-invoices") }}
                         </b-link>
                         <div class="collapse menu-dropdown" id="sidebarInvoices">
@@ -621,7 +626,7 @@ export default {
                       </li>
                       <li class="nav-item">
                         <b-link href="#sidebarTickets" class="nav-link" data-bs-toggle="collapse" role="button"
-                          aria-expanded="false" aria-controls="sidebarTickets" data-key="t-supprt-tickets">
+                                aria-expanded="false" aria-controls="sidebarTickets" data-key="t-supprt-tickets">
                           {{ $t("t-supprt-tickets") }}
                         </b-link>
                         <div class="collapse menu-dropdown" id="sidebarTickets">
@@ -641,7 +646,7 @@ export default {
                       </li>
                       <li class="nav-item">
                         <b-link href="#nftmarketplace" class="nav-link" data-bs-toggle="collapse" role="button"
-                          aria-expanded="false" aria-controls="nftmarketplace" data-key="t-supprt-tickets">
+                                aria-expanded="false" aria-controls="nftmarketplace" data-key="t-supprt-tickets">
                           {{ $t("t-nft-marketplace") }}
                         </b-link>
                         <div class="collapse menu-dropdown" id="nftmarketplace">
@@ -705,8 +710,9 @@ export default {
                         </router-link>
                       </li>
                       <li class="nav-item">
-                        <b-link href="#jobs" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false"
-                          aria-controls="jobs" data-key="t-jobs">
+                        <b-link href="#jobs" class="nav-link" data-bs-toggle="collapse" role="button"
+                                aria-expanded="false"
+                                aria-controls="jobs" data-key="t-jobs">
                           {{ $t("t-jobs") }}
                         </b-link>
                         <div class="collapse menu-dropdown" id="jobs">
@@ -719,7 +725,7 @@ export default {
 
                             <li class="nav-item">
                               <b-link href="#sidebarjoblist" class="nav-link" data-bs-toggle="collapse" role="button"
-                                aria-expanded="false" aria-controls="sidebarjoblist" data-key="t-job-list">
+                                      aria-expanded="false" aria-controls="sidebarjoblist" data-key="t-job-list">
                                 {{ $t("t-job-lists") }}
                               </b-link>
                               <div class="collapse menu-dropdown" id="sidebarjoblist">
@@ -744,8 +750,9 @@ export default {
                             </li>
 
                             <li class="nav-item">
-                              <b-link href="#sidebarcandidatelists" class="nav-link" data-bs-toggle="collapse" role="button"
-                                aria-expanded="false" aria-controls="sidebarcandidatelists" data-key="t-job-list">
+                              <b-link href="#sidebarcandidatelists" class="nav-link" data-bs-toggle="collapse"
+                                      role="button"
+                                      aria-expanded="false" aria-controls="sidebarcandidatelists" data-key="t-job-list">
                                 {{ $t("t-candidate-lists") }}
                               </b-link>
                               <div class="collapse menu-dropdown" id="sidebarcandidatelists">
@@ -800,7 +807,8 @@ export default {
                     <ul class="nav nav-sm flex-column">
                       <li class="nav-item">
                         <b-link href="#sidebarSignIn" class="nav-link" data-bs-toggle="collapse" role="button"
-                          aria-expanded="false" aria-controls="sidebarSignIn" data-key="t-signin">{{ $t("t-signin") }}
+                                aria-expanded="false" aria-controls="sidebarSignIn" data-key="t-signin">
+                          {{ $t("t-signin") }}
                         </b-link>
                         <div class="collapse menu-dropdown" id="sidebarSignIn">
                           <ul class="nav nav-sm flex-column">
@@ -819,7 +827,8 @@ export default {
                       </li>
                       <li class="nav-item">
                         <b-link href="#sidebarSignUp" class="nav-link" data-bs-toggle="collapse" role="button"
-                          aria-expanded="false" aria-controls="sidebarSignUp" data-key="t-signup">{{ $t("t-signup") }}
+                                aria-expanded="false" aria-controls="sidebarSignUp" data-key="t-signup">
+                          {{ $t("t-signup") }}
                         </b-link>
                         <div class="collapse menu-dropdown" id="sidebarSignUp">
                           <ul class="nav nav-sm flex-column">
@@ -839,7 +848,7 @@ export default {
 
                       <li class="nav-item">
                         <b-link href="#sidebarResetPass" class="nav-link" data-bs-toggle="collapse" role="button"
-                          aria-expanded="false" aria-controls="sidebarResetPass" data-key="t-password-reset">
+                                aria-expanded="false" aria-controls="sidebarResetPass" data-key="t-password-reset">
                           {{ $t("t-password-reset") }}
                         </b-link>
                         <div class="collapse menu-dropdown" id="sidebarResetPass">
@@ -859,7 +868,7 @@ export default {
                       </li>
                       <li class="nav-item">
                         <b-link href="#sidebarcreatepass" class="nav-link" data-bs-toggle="collapse" role="button"
-                          aria-expanded="false" aria-controls="sidebarcreatepass" data-key="t-password-reset">
+                                aria-expanded="false" aria-controls="sidebarcreatepass" data-key="t-password-reset">
                           {{ $t("t-password-create") }}
                         </b-link>
                         <div class="collapse menu-dropdown" id="sidebarcreatepass">
@@ -879,7 +888,7 @@ export default {
                       </li>
                       <li class="nav-item">
                         <b-link href="#sidebarLockScreen" class="nav-link" data-bs-toggle="collapse" role="button"
-                          aria-expanded="false" aria-controls="sidebarLockScreen" data-key="t-lock-screen">
+                                aria-expanded="false" aria-controls="sidebarLockScreen" data-key="t-lock-screen">
                           {{ $t("t-lock-screen") }}
                         </b-link>
                         <div class="collapse menu-dropdown" id="sidebarLockScreen">
@@ -900,7 +909,7 @@ export default {
 
                       <li class="nav-item">
                         <b-link href="#sidebarLogout" class="nav-link" data-bs-toggle="collapse" role="button"
-                          aria-expanded="false" aria-controls="sidebarLogout" data-key="t-logout">
+                                aria-expanded="false" aria-controls="sidebarLogout" data-key="t-logout">
                           {{ $t("t-logout") }}
                         </b-link>
                         <div class="collapse menu-dropdown" id="sidebarLogout">
@@ -920,7 +929,7 @@ export default {
                       </li>
                       <li class="nav-item">
                         <b-link href="#sidebarSuccessMsg" class="nav-link" data-bs-toggle="collapse" role="button"
-                          aria-expanded="false" aria-controls="sidebarSuccessMsg" data-key="t-success-message">
+                                aria-expanded="false" aria-controls="sidebarSuccessMsg" data-key="t-success-message">
                           {{ $t("t-success-message") }}
                         </b-link>
                         <div class="collapse menu-dropdown" id="sidebarSuccessMsg">
@@ -940,7 +949,7 @@ export default {
                       </li>
                       <li class="nav-item">
                         <b-link href="#sidebarTwoStep" class="nav-link" data-bs-toggle="collapse" role="button"
-                          aria-expanded="false" aria-controls="sidebarTwoStep" data-key="t-two-step-verification">
+                                aria-expanded="false" aria-controls="sidebarTwoStep" data-key="t-two-step-verification">
                           {{ $t("t-two-step-verification") }}
                         </b-link>
                         <div class="collapse menu-dropdown" id="sidebarTwoStep">
@@ -960,7 +969,7 @@ export default {
                       </li>
                       <li class="nav-item">
                         <b-link href="#sidebarErrors" class="nav-link" data-bs-toggle="collapse" role="button"
-                          aria-expanded="false" aria-controls="sidebarErrors" data-key="t-errors">
+                                aria-expanded="false" aria-controls="sidebarErrors" data-key="t-errors">
                           {{ $t("t-errors") }}
                         </b-link>
                         <div class="collapse menu-dropdown" id="sidebarErrors">
@@ -1006,7 +1015,8 @@ export default {
                       </li>
                       <li class="nav-item">
                         <b-link href="#sidebarProfile" class="nav-link" data-bs-toggle="collapse" role="button"
-                          aria-expanded="false" aria-controls="sidebarProfile" data-key="t-profile">{{ $t("t-profile")
+                                aria-expanded="false" aria-controls="sidebarProfile" data-key="t-profile">{{
+                            $t("t-profile")
                           }}
                         </b-link>
                         <div class="collapse menu-dropdown" id="sidebarProfile">
@@ -1084,17 +1094,19 @@ export default {
                       <li class="nav-item">
                         <router-link to="#" target="_blank" class="nav-link" data-key="t-one-page">{{
                             $t("t-one-page")
-                        }}</router-link>
+                          }}
+                        </router-link>
                       </li>
 
                       <li class="nav-item">
                         <router-link to="#" target="_blank" class="nav-link" data-key="t-nft-landing">{{
                             $t("t-nft-landing")
-                        }}</router-link>
+                          }}
+                        </router-link>
                       </li>
 
                       <li class="nav-item">
-                        <router-link to="#" target="_blank" class="nav-link" data-key="t-nft-landing">{{$t("t-job")}}
+                        <router-link to="#" target="_blank" class="nav-link" data-key="t-nft-landing">{{ $t("t-job") }}
                         </router-link>
                       </li>
 
@@ -1132,7 +1144,8 @@ export default {
                           </li>
                           <li class="nav-item">
                             <router-link to="#" class="nav-link" data-key="t-dropdowns">
-                              {{ $t("t-dropdowns") }}</router-link>
+                              {{ $t("t-dropdowns") }}
+                            </router-link>
                           </li>
                           <li class="nav-item">
                             <router-link to="#" class="nav-link" data-key="t-grid">{{ $t("t-grid") }}
@@ -1152,7 +1165,8 @@ export default {
                           </li>
                           <li class="nav-item">
                             <router-link to="#" class="nav-link" data-key="t-accordion-collapse">
-                              {{ $t("t-accordion-collapse") }}</router-link>
+                              {{ $t("t-accordion-collapse") }}
+                            </router-link>
                           </li>
                           <li class="nav-item">
                             <router-link to="#" class="nav-link" data-key="t-modals">{{ $t("t-modals") }}
@@ -1160,11 +1174,13 @@ export default {
                           </li>
                           <li class="nav-item">
                             <router-link to="#" class="nav-link" data-key="t-offcanvas">
-                              {{ $t("t-offcanvas") }}</router-link>
+                              {{ $t("t-offcanvas") }}
+                            </router-link>
                           </li>
                           <li class="nav-item">
                             <router-link to="#" class="nav-link" data-key="t-placeholders">
-                              {{ $t("t-placeholders") }}</router-link>
+                              {{ $t("t-placeholders") }}
+                            </router-link>
                           </li>
                           <li class="nav-item">
                             <router-link to="#" class="nav-link" data-key="t-progress">{{ $t("t-progress") }}
@@ -1172,7 +1188,8 @@ export default {
                           </li>
                           <li class="nav-item">
                             <router-link to="#" class="nav-link" data-key="t-notifications">
-                              {{ $t("t-notifications") }}</router-link>
+                              {{ $t("t-notifications") }}
+                            </router-link>
                           </li>
                         </ul>
                       </b-col>
@@ -1180,15 +1197,18 @@ export default {
                         <ul class="nav nav-sm flex-column">
                           <li class="nav-item">
                             <router-link to="#" class="nav-link" data-key="t-media-object">
-                              {{ $t("t-media-object") }}</router-link>
+                              {{ $t("t-media-object") }}
+                            </router-link>
                           </li>
                           <li class="nav-item">
                             <router-link to="#" class="nav-link" data-key="t-embed-video">
-                              {{ $t("t-embed-video") }}</router-link>
+                              {{ $t("t-embed-video") }}
+                            </router-link>
                           </li>
                           <li class="nav-item">
                             <router-link to="#" class="nav-link" data-key="t-typography">
-                              {{ $t("t-typography") }}</router-link>
+                              {{ $t("t-typography") }}
+                            </router-link>
                           </li>
                           <li class="nav-item">
                             <router-link to="#" class="nav-link" data-key="t-lists">{{ $t("t-lists") }}
@@ -1196,7 +1216,7 @@ export default {
                           </li>
                           <li class="nav-item">
                             <router-link to="#" class="nav-link" data-key="t-links">{{ $t("t-links") }}
-                              <b-badge variant="success" class="badge-pill" data-key="t-new">{{$t("t-new")}}</b-badge>
+                              <b-badge variant="success" class="badge-pill" data-key="t-new">{{ $t("t-new") }}</b-badge>
                             </router-link>
                           </li>
                           <li class="nav-item">
@@ -1209,7 +1229,8 @@ export default {
                           </li>
                           <li class="nav-item">
                             <router-link to="#" class="nav-link" data-key="t-utilities">
-                              {{ $t("t-utilities") }}</router-link>
+                              {{ $t("t-utilities") }}
+                            </router-link>
                           </li>
                         </ul>
                       </b-col>
@@ -1222,29 +1243,35 @@ export default {
                     <ul class="nav nav-sm flex-column">
                       <li class="nav-item">
                         <router-link to="#" class="nav-link" data-key="t-sweet-alerts">
-                          {{ $t("t-sweet-alerts") }}</router-link>
+                          {{ $t("t-sweet-alerts") }}
+                        </router-link>
                       </li>
 
                       <li class="nav-item">
                         <router-link to="#" class="nav-link" data-key="t-scrollbar">
-                          {{ $t("t-scrollbar") }}</router-link>
+                          {{ $t("t-scrollbar") }}
+                        </router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="#" class="nav-link" data-key="t-animation">
-                          {{ $t("t-animation") }}</router-link>
+                          {{ $t("t-animation") }}
+                        </router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="#" class="nav-link" data-key="t-swiper-slider">
-                          {{ $t("t-swiper-slider") }}</router-link>
+                          {{ $t("t-swiper-slider") }}
+                        </router-link>
                       </li>
 
                       <li class="nav-item">
                         <router-link to="#" class="nav-link" data-key="t-highlight">
-                          {{ $t("t-highlight") }}</router-link>
+                          {{ $t("t-highlight") }}
+                        </router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="#" class="nav-link" data-key="t-scrollSpy">
-                          {{ $t("t-scrollSpy") }}</router-link>
+                          {{ $t("t-scrollSpy") }}
+                        </router-link>
                       </li>
                     </ul>
                   </div>
@@ -1255,15 +1282,18 @@ export default {
                     <ul class="nav nav-sm flex-column">
                       <li class="nav-item">
                         <router-link to="#" class="nav-link" data-key="t-basic-elements">
-                          {{ $t("t-basic-elements") }}</router-link>
+                          {{ $t("t-basic-elements") }}
+                        </router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="#" class="nav-link" data-key="t-form-select">
-                          {{ $t("t-form-select") }}</router-link>
+                          {{ $t("t-form-select") }}
+                        </router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="#" class="nav-link" data-key="t-checkboxs-radios">
-                          {{ $t("t-checkboxs-radios") }}</router-link>
+                          {{ $t("t-checkboxs-radios") }}
+                        </router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="#" class="nav-link" data-key="t-pickers">
@@ -1272,11 +1302,13 @@ export default {
                       </li>
                       <li class="nav-item">
                         <router-link to="#" class="nav-link" data-key="t-input-masks">
-                          {{ $t("t-input-masks") }}</router-link>
+                          {{ $t("t-input-masks") }}
+                        </router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="#" class="nav-link" data-key="t-advanced">
-                          {{ $t("t-advanced") }}</router-link>
+                          {{ $t("t-advanced") }}
+                        </router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="#" class="nav-link" data-key="t-range-slider">
@@ -1285,7 +1317,8 @@ export default {
                       </li>
                       <li class="nav-item">
                         <router-link to="#" class="nav-link" data-key="t-validation">
-                          {{ $t("t-validation") }}</router-link>
+                          {{ $t("t-validation") }}
+                        </router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="#" class="nav-link" data-key="t-wizard">{{ $t("t-wizard") }}
@@ -1297,11 +1330,13 @@ export default {
                       </li>
                       <li class="nav-item">
                         <router-link to="#" class="nav-link" data-key="t-file-uploads">
-                          {{ $t("t-file-uploads") }}</router-link>
+                          {{ $t("t-file-uploads") }}
+                        </router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="#" class="nav-link" data-key="t-form-layouts">
-                          {{ $t("t-form-layouts") }}</router-link>
+                          {{ $t("t-form-layouts") }}
+                        </router-link>
                       </li>
                     </ul>
                   </div>
@@ -1312,7 +1347,8 @@ export default {
                     <ul class="nav nav-sm flex-column">
                       <li class="nav-item">
                         <router-link to="#" class="nav-link" data-key="t-basic-tables">
-                          {{ $t("t-basic-tables") }}</router-link>
+                          {{ $t("t-basic-tables") }}
+                        </router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="#" class="nav-link" data-key="t-grid-js">{{ $t("t-grid-js") }}
@@ -1327,7 +1363,7 @@ export default {
                     <ul class="nav nav-sm flex-column">
                       <li class="nav-item">
                         <b-link href="#sidebarApexcharts" class="nav-link" data-bs-toggle="collapse" role="button"
-                          aria-expanded="false" aria-controls="sidebarApexcharts" data-key="t-apexcharts">
+                                aria-expanded="false" aria-controls="sidebarApexcharts" data-key="t-apexcharts">
                           {{ $t("t-apexcharts") }}
                         </b-link>
                         <div class="collapse menu-dropdown" id="sidebarApexcharts">
@@ -1359,12 +1395,14 @@ export default {
                             </li>
                             <li class="nav-item">
                               <router-link to="#" class="nav-link" data-key="t-range-area">{{ $t("t-range-area") }}
-                                <b-badge variant="success" class="badge-pill" data-key="t-new">{{$t("t-new")}}</b-badge>
+                                <b-badge variant="success" class="badge-pill" data-key="t-new">{{ $t("t-new") }}
+                                </b-badge>
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="#" class="nav-link" data-key="t-funnel">{{ $t("t-funnel") }}
-                                <b-badge variant="success" class="badge-pill" data-key="t-new">{{$t("t-new")}}</b-badge>
+                                <b-badge variant="success" class="badge-pill" data-key="t-new">{{ $t("t-new") }}
+                                </b-badge>
                               </router-link>
                             </li>
                             <li class="nav-item">
@@ -1445,19 +1483,22 @@ export default {
                       </li>
                       <li class="nav-item">
                         <router-link to="#" class="nav-link" data-key="t-material-design">
-                          {{ $t("t-material-design") }}</router-link>
+                          {{ $t("t-material-design") }}
+                        </router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="#" class="nav-link" data-key="t-line-awesome">
-                          {{ $t("t-line-awesome") }}</router-link>
+                          {{ $t("t-line-awesome") }}
+                        </router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="#" class="nav-link" data-key="t-feather">{{ $t("t-feather") }}
                         </router-link>
                       </li>
                       <li class="nav-item">
-                        <router-link to="#" class="nav-link" data-key="t-feather">{{ $t("t-crypto-svg")
-                        }}
+                        <router-link to="#" class="nav-link" data-key="t-feather">{{
+                            $t("t-crypto-svg")
+                          }}
                         </router-link>
                       </li>
                     </ul>
@@ -1491,7 +1532,7 @@ export default {
                       </li>
                       <li class="nav-item">
                         <b-link href="#sidebarAccount" class="nav-link" data-bs-toggle="collapse" role="button"
-                          aria-expanded="false" aria-controls="sidebarAccount" data-key="t-level-1.2">
+                                aria-expanded="false" aria-controls="sidebarAccount" data-key="t-level-1.2">
                           {{ $t("t-level-1.2") }}
                         </b-link>
                         <div class="collapse menu-dropdown" id="sidebarAccount">
@@ -1503,7 +1544,7 @@ export default {
                             </li>
                             <li class="nav-item">
                               <b-link href="#sidebarCrm" class="nav-link" data-bs-toggle="collapse" role="button"
-                                aria-expanded="false" aria-controls="sidebarCrm" data-key="t-level-2.2">
+                                      aria-expanded="false" aria-controls="sidebarCrm" data-key="t-level-2.2">
                                 {{ $t("t-level-2.2") }}
                               </b-link>
                               <div class="collapse menu-dropdown" id="sidebarCrm">
@@ -1550,11 +1591,11 @@ export default {
       <div class="page-content">
         <!-- Start Content-->
         <b-container fluid>
-          <slot />
+          <slot/>
         </b-container>
       </div>
-      <Footer />
+      <Footer/>
     </div>
-    <RightBar />
+    <RightBar/>
   </div>
 </template>

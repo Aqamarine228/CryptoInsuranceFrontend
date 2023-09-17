@@ -1,6 +1,6 @@
 <script setup>
 
-import {SimpleBar} from "simplebar-vue3";
+import SimpleBar from "simplebar-vue";
 </script>
 
 <template>

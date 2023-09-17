@@ -1,4 +1,5 @@
 import { createI18n } from 'vue-i18n';
+import store from "@/state/store";
 
 /**
  * Load locale messages
@@ -43,7 +44,7 @@ const dateTimeFormats = {
 };
 
 const i18n = createI18n({
-  locale: process.env.VUE_APP_I18N_LOCALE || 'en',
+  locale: store.getters['locale/currentLocale'],
   fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE || 'en',
   messages: loadLocaleMessages(),
   dateTimeFormats,

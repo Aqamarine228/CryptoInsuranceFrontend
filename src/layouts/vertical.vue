@@ -1,31 +1,33 @@
 <script>
   import router from "@/router";
-  import { SimpleBar } from "simplebar-vue3";
-  import { layoutComputed } from "@/state/helpers";
-  
+  import simplebar from "simplebar-vue";
+
   import NavBar from "@/components/nav-bar";
   import Menu from "@/components/menu.vue";
   import RightBar from "@/components/right-bar";
   import Footer from "@/components/footer";
+  import {layoutComputed} from "@/state/helpers";
   localStorage.setItem('hoverd',false);
   
   /**
    * Vertical layout
    */
   export default {
-    components: { NavBar, RightBar, Footer, SimpleBar, Menu },
+    components: { NavBar, RightBar, Footer, simplebar, Menu },
     data() {
       return {
         isMenuCondensed: false,
       };
     },
-    computed: {
-      ...layoutComputed,
-    },
     created: () => {
       document.body.removeAttribute("data-layout", "horizontal");
       document.body.removeAttribute("data-topbar", "dark");
       document.body.removeAttribute("data-layout-size", "boxed");
+
+      document.documentElement.setAttribute("data-layout", "vertical");
+    },
+    computed: {
+      ...layoutComputed,
     },
     methods: {
       initActiveMenu() {
@@ -109,9 +111,9 @@
             </button>
           </div>
   
-          <SimpleBar id="scrollbar" class="h-100" ref="scrollbar">
+          <simplebar id="scrollbar" class="h-100" ref="scrollbar">
             <Menu></Menu>
-          </SimpleBar>
+          </simplebar>
           <div class="sidebar-background"></div>
         </div>
         <!-- Left Sidebar End -->

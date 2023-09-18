@@ -1,86 +1,89 @@
-<script>
+<script setup>
 import getChartColorsArray from "@/common/getChartColorsArray";
-export default {
-  setup() {
-    return {
-      series: [{
-        name: "Income",
-        data: [20, 25, 30, 35, 40, 55, 70, 110, 150, 180, 210, 250],
+import {onMounted, ref} from "vue";
+import axiosInstance from "@/plugins/axios";
+import backend from "@/config/backend";
+import timePeriods from "@/common/timePeriods";
+
+const chartOptions = {
+  chart: {
+    height: 290,
+    type: "area",
+    toolbar: "false",
+  },
+  dataLabels: {
+    enabled: false,
+  },
+  stroke: {
+    curve: "smooth",
+    width: 2,
+  },
+  xaxis: {
+    type: "datetime"
+  },
+  yaxis: {
+    labels: {
+      formatter: function (value) {
+        return "$" + value + "k";
       },
-      ],
-      chartOptions: {
-        chart: {
-          height: 290,
-          type: "area",
-          toolbar: "false",
-        },
-        dataLabels: {
-          enabled: false,
-        },
-        stroke: {
-          curve: "smooth",
-          width: 2,
-        },
-        xaxis: {
-          categories: [
-            "Jan",
-            "Feb",
-            "Mar",
-            "Apr",
-            "May",
-            "Jun",
-            "Jul",
-            "Aug",
-            "Sep",
-            "Oct",
-            "Nov",
-            "Dec",
-          ],
-        },
-        yaxis: {
-          labels: {
-            formatter: function (value) {
-              return "$" + value + "k";
-            },
-          },
-          tickAmount: 5,
-          min: 0,
-          max: 260,
-        },
-        colors: getChartColorsArray('["--vz-success", "--vz-danger"]'),
-        fill: {
-          opacity: 0.06,
-          colors: ["#0AB39C", "#F06548"],
-          type: "solid",
-        },
-      },
-    };
+    },
+  },
+  colors: getChartColorsArray('["--vz-success", "--vz-danger"]'),
+  fill: {
+    opacity: 0.06,
+    colors: ["#0AB39C", "#F06548"],
+    type: "solid",
   },
 };
+
+const customTimePeriods = [...timePeriods]
+customTimePeriods.shift()
+
+const loading = ref(true)
+const selectedTimePeriod = ref(customTimePeriods[0].value);
+const series = ref([])
+
+onMounted(() => getData())
+
+
+function changeTimePeriod(event) {
+  selectedTimePeriod.value = event.target.value
+  getData()
+}
+
+function getData() {
+  loading.value = true
+  axiosInstance.get(backend.referralIncomeHistoryData, {
+    params: {
+      time_period: selectedTimePeriod.value,
+    }
+  }).then((response) => {
+    series.value[0] = {
+      name: "Income",
+      data: response,
+    }
+    loading.value = false
+  })
+}
 </script>
 
 <template>
   <b-card no-body class="card-height-100">
     <b-card-header class="align-items-center d-flex">
-      <b-card-title class="mb-0 flex-grow-1">Referral Income Overview</b-card-title>
+      <b-card-title class="mb-0 flex-grow-1">{{$t('referrals.dailyIncomeOverview')}}</b-card-title>
       <div class="flex-shrink-0">
-        <div class="dropdown card-header-dropdown">
-          <b-link class="text-reset dropdown-btn" href="#" data-bs-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false">
-            <span class="fw-semibold text-uppercase fs-12">Sort by: </span><span class="text-muted">Current Year<i
-                class="mdi mdi-chevron-down ms-1"></i></span>
-          </b-link>
-          <div class="dropdown-menu dropdown-menu-end">
-            <b-link class="dropdown-item" href="#">Today</b-link>
-            <b-link class="dropdown-item" href="#">Last Week</b-link>
-            <b-link class="dropdown-item" href="#">Last Month</b-link>
-            <b-link class="dropdown-item" href="#">Current Year</b-link>
-          </div>
-        </div>
+        <select class="form-select form-select-sm" aria-label=".form-select-sm example"
+                @change="changeTimePeriod($event)">
+          <option v-for="period in customTimePeriods" :key="period.value" :selected="period.value === selectedTimePeriod"
+                  :value="period.value">
+            {{ this.$t(period.label) }}
+          </option>
+        </select>
       </div>
     </b-card-header>
     <b-card-body class="px-0">
-      <apexchart class="apex-charts" height="290" dir="ltr" :series="series" :options="chartOptions"></apexchart>
+      <div v-if="loading" class="spinner-border mt-auto mb-auto"></div>
+      <apexchart v-else class="apex-charts" height="290" dir="ltr" :series="series" :options="chartOptions"></apexchart>
     </b-card-body>
   </b-card>
 </template>

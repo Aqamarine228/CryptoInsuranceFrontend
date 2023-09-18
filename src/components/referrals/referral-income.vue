@@ -18,6 +18,7 @@ const columns = [
   {
     label: "referrals.type",
     name: "payable_type",
+    sortable: false,
   },
   {
     label: "referrals.amount",
@@ -106,7 +107,8 @@ function sortByColumn(column) {
           <thead>
           <tr>
             <th scope="col" style="width: 20%" v-for="item in columns" :key="item.name">
-              <a href="" @click.prevent="sortByColumn(item.name)" class="text-body">
+              <span v-if="item.sortable === false">{{ this.$t(item.label) }}</span>
+              <a v-else href="" @click.prevent="sortByColumn(item.name)" class="text-body">
                 {{ this.$t(item.label) }}
                 <i v-if="filterableColumnIcons[item.name]" class="bx"
                    :class="filterableColumnIcons[item.name]"></i>

@@ -63,6 +63,10 @@
   "referrals.type": "Type",
   "referrals.amount": "Amount",
   "referrals.date": "Date",
+  "referrals.name": "Name",
+  "referrals.overall_income": "Overall Income",
+  "referrals.last_income": "Last Income",
+  "referrals.dailyIncomeOverview": "Daily Income Overview",
 
   "become-referral.submit": "Submit",
   "become-referral.submitting": "Submiting",

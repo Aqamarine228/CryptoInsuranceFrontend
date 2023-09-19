@@ -70,11 +70,12 @@ function getData() {
 <template>
   <b-card no-body class="card-height-100">
     <b-card-header class="align-items-center d-flex">
-      <b-card-title class="mb-0 flex-grow-1">{{$t('referrals.dailyIncomeOverview')}}</b-card-title>
+      <b-card-title class="mb-0 flex-grow-1">{{ $t('referrals.dailyIncomeOverview') }}</b-card-title>
       <div class="flex-shrink-0">
         <select class="form-select form-select-sm" aria-label=".form-select-sm example"
                 @change="changeTimePeriod($event)">
-          <option v-for="period in customTimePeriods" :key="period.value" :selected="period.value === selectedTimePeriod"
+          <option v-for="period in customTimePeriods" :key="period.value"
+                  :selected="period.value === selectedTimePeriod"
                   :value="period.value">
             {{ this.$t(period.label) }}
           </option>
@@ -82,7 +83,8 @@ function getData() {
       </div>
     </b-card-header>
     <b-card-body class="px-0">
-      <div v-if="loading" class="spinner-border mt-auto mb-auto"></div>
+      <div v-if="loading" class="mt-auto mb-auto h-100 w-100 d-flex justify-content-center align-items-center"><span
+          class="spinner-border "></span></div>
       <apexchart v-else class="apex-charts" height="290" dir="ltr" :series="series" :options="chartOptions"></apexchart>
     </b-card-body>
   </b-card>

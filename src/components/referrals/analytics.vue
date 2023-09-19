@@ -1,7 +1,7 @@
 <script setup>
 
 import Widget from "@/components/referrals/widget.vue";
-import BalanceOverview from "@/components/referrals/balance-overview.vue";
+import BalanceOverview from "@/components/referrals/income-overview.vue";
 import DealsStatus from "@/components/referrals/referrals-table.vue";
 import ClosingDeals from "@/components/referrals/referral-income.vue";
 import ReferralLink from "@/components/referrals/referral-link.vue";

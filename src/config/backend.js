@@ -16,6 +16,7 @@ export default {
     referralIncome: '/v1/referral-income',
     referralIncomeHistoryData: '/v1/referral-income/history-data',
     insuranceInvoice: (id) => `/v1/insurance-invoice/${id}`,
+    createInsuranceCoinbaseInvoice: (id) => `/v1/insurance-invoice/${id}/coinbase`,
     insuranceOption: (id) => `/v1/insurance-option/${id}`,
     createInsuranceRequest: (id) => `/v1/insurance-request/${id}`,
 }

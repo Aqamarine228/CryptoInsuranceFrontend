@@ -1,5 +1,5 @@
 <script setup>
-import {onMounted, ref} from "vue";
+import {computed, onMounted, ref} from "vue";
 import {useRouter} from "vue-router";
 import axiosInstance from "@/plugins/axios";
 
@@ -11,6 +11,8 @@ const error = ref("");
 onMounted(async () => {
   await verifyEmail()
 })
+
+const hasError = computed(() => !!error.value);
 
 function verifyEmail() {
   const link = router.currentRoute.value.query.verification_link
@@ -73,7 +75,7 @@ function verifyEmail() {
                   <div class="text-muted text-center mb-4 mx-lg-3">
                     <h4 v-if="success">{{ $t('verify-email.verifiedSuccessfully') }}</h4>
                     <h4 v-else>{{ $t('verify-email.verificationError') }}</h4>
-                    <b-alert v-if="!success" v-model="error" variant="danger" class="mt-3">{{ error }}</b-alert>
+                    <b-alert v-if="!success" v-model="hasError" variant="danger" class="mt-3">{{ error }}</b-alert>
                   </div>
                 </div>
               </b-card-body>

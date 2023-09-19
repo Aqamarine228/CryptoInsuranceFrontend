@@ -70,7 +70,7 @@ function buy(insurancePackId) {
   <b-row class="justify-content-center mt-4">
     <b-col lg="5">
       <div class="text-center mb-4">
-        <h4 class="fs-22">Plans & Pricing</h4>
+        <h4 class="fs-22">{{$t('insurance.plansAndPricing')}}</h4>
 
         <div class="d-inline-flex">
           <ul class="nav nav-pills arrow-navtabs plan-nav rounded mb-3 p-1" id="pills-tab" role="tablist"
@@ -87,7 +87,7 @@ function buy(insurancePackId) {
                         :class="currentOption.id === item.id ? 'active' : ''"
                         type="button" role="tab" aria-selected="true" @click="changeSubscriptionOption(item.id)">
                 {{ readableDuration(item.duration) }}
-                <span class="badge bg-success" v-if="item.sale_percentage !== 0">{{ item.sale_percentage }}% Off</span>
+                <span class="badge bg-success" v-if="item.sale_percentage !== 0">{{ item.sale_percentage }}% {{$t('insurance.off')}}</span>
               </b-button>
             </li>
           </ul>
@@ -155,7 +155,7 @@ function buy(insurancePackId) {
           <div class="mt-3 pt-2">
             <button class="btn btn-primary w-100" @click="buy(pack.id)" :disabled="creatingInvoice">
               <span v-if="creatingInvoice" class="spinner-border spinner-border-sm"></span>
-              <span v-else>Buy</span>
+              <span v-else>{{$t('insurance.buy')}}</span>
             </button>
           </div>
         </b-card-body>
@@ -165,13 +165,12 @@ function buy(insurancePackId) {
   <b-row class="justify-content-center mt-4">
     <b-col lg="5">
       <div class="text-center mb-4">
-        <h4 class="fs-22">Not Satisfied ?</h4>
-        <p class="text-muted mb-4 fs-15">If you are not satisfied with our solutions, you are able to create your
-          own</p>
+        <h4 class="fs-22">{{$t('insurance.notSatisfied')}} ?</h4>
+        <p class="text-muted mb-4 fs-15">{{$t('insurance.notSatisfiedDescription')}}</p>
 
         <div class="d-inline-flex">
           <router-link class="btn btn-primary w-100" :to="{name: 'Create own insurance'}">
-            Create own
+            {{$t('insurance.createOwn')}}
           </router-link>
         </div>
       </div>

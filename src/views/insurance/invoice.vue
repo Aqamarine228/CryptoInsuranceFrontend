@@ -3,11 +3,13 @@
 import Layout from "@/layouts/main.vue";
 import PageHeader from "@/components/page-header.vue";
 import {useI18n} from "vue-i18n";
-import {computed, onMounted, ref} from "vue";
+import {onMounted, ref} from "vue";
 import axiosInstance from "@/plugins/axios";
 import backend from "@/config/backend";
 import {useRoute} from "vue-router";
-import moment from "moment";
+import laravelDateToHumanReadable from "../../common/laravelDateToHumanReadable";
+import Unpaid from "@/components/insurance-invoice/unpaid.vue";
+import Paid from "@/components/insurance-invoice/paid.vue";
 
 const i18n = useI18n()
 const route = useRoute()
@@ -25,22 +27,17 @@ const items = [
 ]
 
 const invoice = ref({})
-const paymentMethod = ref("")
+const loading = ref(true)
 
 onMounted(() => {
   getInvoice()
 })
 
-const paymentButtonDisabled = computed(() => !paymentMethod.value)
-
 function getInvoice() {
   axiosInstance.get(backend.insuranceInvoice(route.params.id)).then((response) => {
     invoice.value = response
+    loading.value = false
   })
-}
-
-function humanReadableDate(date) {
-  return moment(date).format("yyyy-MM-dd HH:mm")
 }
 </script>
 
@@ -62,39 +59,43 @@ function humanReadableDate(date) {
           </b-card-header>
           <b-card-body class="p-4">
             <b-row class="g-3">
-              <b-col lg="4" cols="6">
-                <p class="text-muted mb-2 text-uppercase fw-semibold">Invoice No</p>
-                <h5 class="fs-14 mb-0"><span id="invoice-no">{{ invoice.id }}</span></h5>
-              </b-col>
-              <b-col lg="4" cols="6">
-                <p class="text-muted mb-2 text-uppercase fw-semibold">Date</p>
-                <h5 class="fs-14 mb-0">
-                  <span id="invoice-date">{{ humanReadableDate(invoice.created_at) }}</span>
+              <b-col lg="3" cols="6">
+                <p class="text-muted mb-2 text-uppercase fw-semibold">{{ $t('insurance-invoice.invoiceNumber') }}</p>
+                <h5 class="fs-14 mb-0 class-name placeholder-glow">
+                  <span class="placeholder w-25" v-if="loading"></span>
+                  <span id="invoice-no" v-else>{{ invoice.id }}</span>
                 </h5>
               </b-col>
-              <b-col lg="4" cols="6">
-                <p class="text-muted mb-2 text-uppercase fw-semibold">Total Amount</p>
-                <h5 class="fs-14 mb-0">$<span id="total-amount">{{ invoice.amount }}</span></h5>
+              <b-col lg="3" cols="6">
+                <p class="text-muted mb-2 text-uppercase fw-semibold">{{ $t('insurance-invoice.dateCreated') }}</p>
+                <h5 class="fs-14 mb-0 placeholder-glow">
+                  <span class="placeholder w-25" v-if="loading"></span>
+                  <span id="invoice-date" v-else>{{ laravelDateToHumanReadable(invoice.created_at) }}</span>
+                </h5>
+              </b-col>
+              <b-col lg="3" cols="6">
+                <p class="text-muted mb-2 text-uppercase fw-semibold">{{ $t('insurance-invoice.totalAmount') }}</p>
+                <h5 class="fs-14 mb-0 placeholder-glow">
+                  <span class="placeholder w-25" v-if="loading"></span>
+                  <span id="total-amount" v-else>${{ invoice.amount }}</span>
+                </h5>
+              </b-col>
+              <b-col lg="3" cols="6">
+                <p class="text-muted mb-2 text-uppercase fw-semibold">{{ $t('insurance-invoice.status') }}</p>
+                <h5 class="fs-14 mb-0 placeholder-glow">
+                  <span class="placeholder w-25" v-if="loading"></span>
+                  <span id="total-amount" v-else>
+                    {{$t(`insurance-invoice.status.${invoice.status}`) }}
+                  </span>
+                </h5>
               </b-col>
             </b-row>
           </b-card-body>
-          <b-card-body class="p-4 border-top border-top-dashed">
-            <b-row class="g-3">
-              <b-col sm="12">
-                <h6 class="text-muted text-uppercase fw-semibold mb-3">Payment Method</h6>
-                <select class="form-control mb-3" v-model="paymentMethod">
-                  <option value="ltc">LTC</option>
-                  <option value="btc">BTC</option>
-                  <option value="xmr">XMR</option>
-                  <option value="usdt">USDT</option>
-                </select>
-
-                <button class="btn btn-primary w-100" :disabled="paymentButtonDisabled">
-                  Pay
-                </button>
-              </b-col>
-            </b-row>
+          <b-card-body class="p-4 d-flex align-items-center justify-content-center" v-if="loading">
+            <span class="spinner-border"></span>
           </b-card-body>
+          <unpaid :invoice-id="route.params.id" v-else-if="invoice.status !== 'paid'"/>
+          <paid v-else/>
         </b-card>
       </b-col>
     </b-row>

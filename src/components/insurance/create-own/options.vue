@@ -88,7 +88,7 @@ function buy() {
   <b-row class="justify-content-center mt-4">
     <b-col lg="5">
       <div class="text-center mb-4">
-        <h4 class="fs-22">Select Needed Options</h4>
+        <h4 class="fs-22">{{$t('insurance.selectNeededOptions')}}</h4>
 
         <div class="d-inline-flex">
           <ul class="nav nav-pills arrow-navtabs plan-nav rounded mb-3 p-1" id="pills-tab" role="tablist"
@@ -105,7 +105,7 @@ function buy() {
                         :class="selectedSubscriptionOption.id === item.id ? 'active' : ''"
                         type="button" role="tab" aria-selected="true" @click="changeSubscriptionOption(item.id)">
                 {{ readableDuration(item.duration) }}
-                <span class="badge bg-success" v-if="item.sale_percentage !== 0">{{ item.sale_percentage }}% Off</span>
+                <span class="badge bg-success" v-if="item.sale_percentage !== 0">{{ item.sale_percentage }}% {{$t('insurance.off')}}</span>
               </b-button>
             </li>
           </ul>
@@ -163,7 +163,7 @@ function buy() {
                       :class="selectedOptions[option.id] ? 'btn-success' : 'btn-soft-success waves-light'"
                       @click="selectOption(option.id, option.price)"
                   >
-                    {{ selectedOptions[option.id] ? 'Selected' : 'Select' }}
+                    {{ selectedOptions[option.id] ? $t('insurance.selected') : $t('insurance.select') }}
                   </b-button>
                 </div>
               </div>
@@ -179,7 +179,9 @@ function buy() {
         <span class="spinner-border spinner-grow-sm text-white"></span>
       </button>
       <button class="w-100 btn btn-primary" :disabled="buyButtonDisabled" @click="buy" v-else>
-        {{ buyButtonDisabled ? 'Please select options first' : `Buy ${overallPrice}$` }}
+        {{
+          buyButtonDisabled ? $t('insurance.pleaseSelectOptionsFirst') : $t('insurance.buyWithPrice', {price: overallPrice})
+        }}
       </button>
     </b-col>
   </b-row>

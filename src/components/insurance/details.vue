@@ -3,7 +3,7 @@
 import {onMounted, ref} from "vue";
 import backend from "@/config/backend";
 import axiosInstance from "@/plugins/axios";
-import moment from "moment";
+import laravelDateToHumanReadable from "../../common/laravelDateToHumanReadable";
 
 const insurance = ref({});
 
@@ -16,10 +16,6 @@ function getInsurance() {
     insurance.value = response
   })
 }
-
-function humanReadableDate(date) {
-  return moment(date).format('DD.MM.YYYY')
-}
 </script>
 
 <template>
@@ -29,9 +25,9 @@ function humanReadableDate(date) {
         <b-card-body>
           <div class="d-flex justify-content-between">
             <div>
-              <p class="fw-medium text-muted mb-0">Expires At</p>
+              <p class="fw-medium text-muted mb-0">{{$t('insurance.expiresAt')}}</p>
               <h2 class="mt-4 ff-secondary fw-semibold">
-                {{ humanReadableDate(insurance.expires_at) }}
+                {{ laravelDateToHumanReadable(insurance.expires_at) }}
               </h2>
             </div>
             <div>
@@ -51,9 +47,9 @@ function humanReadableDate(date) {
         <b-card-body>
           <div class="d-flex justify-content-between">
             <div>
-              <p class="fw-medium text-muted mb-0">Bought At</p>
+              <p class="fw-medium text-muted mb-0">{{$t('insurance.boughtAt')}}</p>
               <h2 class="mt-4 ff-secondary fw-semibold">
-                {{ humanReadableDate(insurance.created_at) }}
+                {{ laravelDateToHumanReadable(insurance.created_at) }}
               </h2>
             </div>
             <div>
@@ -92,7 +88,7 @@ function humanReadableDate(date) {
                         id: option.id
                       }}"
                   >
-                    Submit Insurance Request
+                    {{$t('insurance.submitInsuranceRequest')}}
                   </router-link>
                 </div>
               </div>

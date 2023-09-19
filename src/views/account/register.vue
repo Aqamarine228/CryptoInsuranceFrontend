@@ -66,8 +66,6 @@ export default {
         password_confirmation: this.user.confirmPassword
       }
 
-      console.log(this.$route.query);
-
       if (this.$route.query.inviter_id) {
         data.inviter_id = this.$route.query.inviter_id
       }

@@ -1,15 +1,22 @@
 <script setup>
 
-import {onMounted, ref} from "vue";
+import {computed, onMounted, ref} from "vue";
 import backend from "@/config/backend";
 import axiosInstance from "@/plugins/axios";
 import laravelDateToHumanReadable from "../../common/laravelDateToHumanReadable";
+import {useStore} from "vuex";
+import {useI18n} from "vue-i18n";
+
+const store = useStore()
+const i18n = useI18n()
 
 const insurance = ref({});
 
 onMounted(() => {
   getInsurance()
 })
+
+const hasInsuranceRequest = computed(() => store.getters['user/user'].has_insurance_request)
 
 function getInsurance() {
   axiosInstance.get(backend.insurance).then((response) => {
@@ -64,6 +71,13 @@ function getInsurance() {
       </b-card>
     </b-col>
   </b-row>
+  <b-row>
+    <b-col md="12">
+      <b-alert variant="warning" v-model="hasInsuranceRequest" dismissible>
+        {{ $t('insurance.notAbleToSubmitInsuranceRequest')}}
+      </b-alert>
+    </b-col>
+  </b-row>
   <b-row class="justify-content-center">
     <b-col xl="12">
       <b-row>
@@ -77,12 +91,13 @@ function getInsurance() {
               </div>
               <div>
                 <b-accordion>
-                  <b-accordion-item title="More...">
+                  <b-accordion-item :title="i18n.t('insurance.more') + '...'">
                     {{ option.description }}
                   </b-accordion-item>
                 </b-accordion>
                 <div class="mt-4">
                   <router-link
+                      v-if="!hasInsuranceRequest"
                       class="btn btn-primary w-100"
                       :to="{name: 'Insurance request', params: {
                         id: option.id

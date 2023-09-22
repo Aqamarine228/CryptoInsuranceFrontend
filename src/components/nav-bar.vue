@@ -103,6 +103,7 @@ export default {
       }
     },
     toggleDarkMode() {
+      this.$store.commit('layout/CHANGE_MODE')
       if (document.documentElement.getAttribute("data-bs-theme") == "dark") {
         document.documentElement.setAttribute("data-bs-theme", "light");
       } else {

@@ -6,6 +6,7 @@
   "login.enterPassword": "Enter Password",
   "login.enterEmail": "Enter Email",
   "login.signIn": "Sign In",
+  "login.signUp": "Sign Up",
   "login.dontHaveAnAccount": "Don't have an account",
   "login.pleaseWait": "Please Wait",
 
@@ -45,6 +46,7 @@
   "menu.createOwnInsurance": "Create Own Insurance",
   "menu.insuranceInvoice": "Insurance Invoice",
   "menu.insuranceRequest": "Insurance Request",
+  "menu.notifications": "Notifications",
 
   "referrals.programTitle": "Our Referral Program",
   "referrals.becomeReferral": "Become Referral",
@@ -64,6 +66,7 @@
   "referrals.amount": "Amount",
   "referrals.date": "Date",
   "referrals.name": "Name",
+  "referrals.tableTitle": "Referrals",
   "referrals.overall_income": "Overall Income",
   "referrals.last_income": "Last Income",
   "referrals.dailyIncomeOverview": "Daily Income Overview",
@@ -75,6 +78,7 @@
   "become-referral.document": "Document Photo",
   "become-referral.documentFieldDescription": "Provide any document that can verify your identity",
   "become-referral.address": "Address",
+  "become-referral.submittedSuccessfully": "Request submitted successfully",
 
   "insurance-invoice.invoiceNumber": "Invoice Number",
   "insurance-invoice.dateCreated": "Date Created",
@@ -88,6 +92,7 @@
   "insurance-invoice.backToInsuranceButton": "Back To Insurance",
 
   "insurance.plansAndPricing": "Plans & Pricing",
+  "insurance.more": "More Information",
   "insurance.off": "Off",
   "insurance.notSatisfied": "Not Satisfied",
   "insurance.notSatisfiedDescription": "If you are not satisfied with our solutions, you are able to create your own",
@@ -101,8 +106,11 @@
   "insurance.expiresAt": "Expires At",
   "insurance.boughtAt": "Bought At",
   "insurance.submitInsuranceRequest": "Submit Insurance Request",
+  "insurance.notAbleToSubmitInsuranceRequest": "You are not able to submit new insurance request because there is one on review",
 
-
+  "insurance-request.title": "Request Form",
+  "insurance-request.submittedSuccessfully": "Request submitted successfully",
+  "insurance-request.submit": "Submit",
 
   "pagination.next": "Next",
   "pagination.displayingRecords": "Total of {total} records",
@@ -111,5 +119,17 @@
   "timePeriods.today": "Today",
   "timePeriods.week": "Week",
   "timePeriods.month": "Month",
-  "timePeriods.year": "Year"
+  "timePeriods.year": "Year",
+
+  "notifications.unreadMessages": "unread messages",
+  "notifications.delete": "Delete",
+  "notifications.selectAll": "Select All",
+  "notifications.title": "Notifications",
+  "notifications.noNotifications": "Hey! You have no any notifications",
+  "notifications.insuranceRequestApproved": "Congratulations, your insurance request has been successfully approved!",
+  "notifications.insuranceRequestRejected": "Unfortunately, your insurance request has been rejected",
+  "notifications.insuranceRequestApprovedText": "You can now withdraw your balance",
+  "notifications.referralRequestApproved": "Congratulations, your referral request has been successfully approved!",
+  "notifications.referralRequestRejected": "Unfortunately, your referral request has been rejected",
+  "notifications.referralRequestToReferralsPage": "To Referrals Page"
 }

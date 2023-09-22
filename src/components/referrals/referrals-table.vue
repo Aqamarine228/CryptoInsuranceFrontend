@@ -84,7 +84,7 @@ function sortByColumn(column) {
 <template>
   <b-card no-body>
     <b-card-header class="align-items-center d-flex">
-      <b-card-title class="mb-0 flex-grow-1">Referrals</b-card-title>
+      <b-card-title class="mb-0 flex-grow-1">{{$t('referrals.tableTitle')}}</b-card-title>
     </b-card-header>
 
     <b-card-body>

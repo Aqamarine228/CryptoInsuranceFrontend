@@ -5,6 +5,12 @@ export const mutations = {
     SET_CURRENT_USER(state, newValue) {
         state.currentUser = newValue
     },
+    REFERRAL_REQUEST_CREATED(state) {
+        state.currentUser.has_referral_request = true
+    },
+    INSURANCE_REQUEST_CREATED(state) {
+        state.currentUser.has_insurance_request = true
+    }
 }
 
 export const getters = {
@@ -26,4 +32,7 @@ export const getters = {
     hasInsurance(state) {
         return state.currentUser?.has_insurance
     },
+    hasInsuranceRequest(state) {
+        return state.currentUser?.has_insurance_request
+    }
 }

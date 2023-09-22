@@ -146,22 +146,6 @@ export default {
         <span data-key="t-menu"> {{ $t("menu.title") }}</span>
       </li>
       <li class="nav-item">
-        <b-link class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button"
-                aria-expanded="false" aria-controls="sidebarDashboards">
-          <i class="bx bxs-dashboard"></i>
-          <span data-key="t-dashboards"> {{ $t("menu.dashboard") }}</span>
-        </b-link>
-        <div class="collapse menu-dropdown" id="sidebarDashboards">
-          <ul class="nav nav-sm flex-column">
-            <li class="nav-item">
-              <router-link to="#" class="nav-link custom-abc" data-key="t-analytics">
-                {{ $t("t-analytics") }}
-              </router-link>
-            </li>
-          </ul>
-        </div>
-      </li>
-      <li class="nav-item">
         <router-link :to="{name: 'referrals'}" class="nav-link menu-link">
           <i class="bx bxs-user-detail"></i>
           <span> {{ $t("menu.referrals") }}</span>

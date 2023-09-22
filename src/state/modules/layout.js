@@ -3,7 +3,7 @@ export const state = {
   layoutWidth: 'fluid',
   sidebarSize: 'lg',
   topbar: 'dark',
-  mode: 'light',
+  mode: localStorage.getItem('layout.mode') || 'light',
   position: 'fixed',
   sidebarView: 'default',
   sidebarColor: 'dark',
@@ -25,8 +25,8 @@ export const mutations = {
   CHANGE_TOPBAR(state, topbar) {
     state.topbar = topbar;
   },
-  CHANGE_MODE(state, mode) {
-    state.mode = mode;
+  CHANGE_MODE(state) {
+    saveState('layout.mode', state.mode === 'light' ? 'dark' : 'light');
   },
   CHANGE_POSITION(state, position) {
     state.position = position;
@@ -94,3 +94,7 @@ export const actions = {
     commit('CHANGE_VISIBILITY', visibility);
   }
 };
+
+function saveState(key, state) {
+  localStorage.setItem(key, state)
+}

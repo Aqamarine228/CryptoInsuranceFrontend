@@ -23,14 +23,14 @@ function changePage(page) {
         </i>
       </li>
       <li class="page-item" :class="{'disabled' : currentPage === 1}" style="margin-left: auto">
-        <a class="page-link" href="#" @click.prevent="changePage(currentPage - 1)">Previous</a>
+        <a class="page-link" href="#" @click.prevent="changePage(currentPage - 1)">{{$t('pagination.previous')}}</a>
       </li>
       <li v-for="page in props.pageNumber" :key="page" class="page-item"
           :class="{'active': page === props.currentPage}">
         <a href="javascript:void(0)" @click.prevent="changePage(page)" class="page-link">{{ page }}</a>
       </li>
       <li class="page-item" :class="{'disabled': currentPage === props.pageNumber }">
-        <a class="page-link" href="#" @click.prevent="changePage(currentPage + 1)">Next</a>
+        <a class="page-link" href="#" @click.prevent="changePage(currentPage + 1)">{{$t('pagination.next')}}</a>
       </li>
     </ul>
   </nav>

@@ -7,9 +7,12 @@ import {ref} from "vue";
 import backend from "@/config/backend";
 import axiosInstance from "@/plugins/axios";
 import {useRouter} from "vue-router";
+import {useStore} from "vuex";
+import Swal from "sweetalert2";
 
 const i18n = useI18n()
 const router = useRouter()
+const store = useStore()
 
 const title = i18n.t('menu.becomeReferral')
 const items = [
@@ -43,7 +46,16 @@ function submitRequest() {
       "Content-Type": "multipart/form-data"
     }
   }).then(() => {
+    store.commit('user/REFERRAL_REQUEST_CREATED')
     router.push({name: "referrals"})
+    Swal.fire({
+      title: i18n.t('become-referral.submittedSuccessfully'),
+      icon: "success",
+      position: "top-end",
+      showConfirmButton: false,
+      width: '300px',
+      timer: 1500
+    })
   })
   submitting.value = false
 }
@@ -95,7 +107,8 @@ function submitRequest() {
                     <b-col lg="12">
                       <div class="hstack gap-2 justify-content-end">
                         <b-button type="submit" class="w-100 btn-success" variant="primary" :disabled="submitting">
-                          {{ submitting ? $t('become-referral.submitting') + "..." : $t('become-referral.submit') }}
+                          <span class="spinner-border spinner-border-sm" v-if="submitting"></span>
+                          <span v-else>{{$t('become-referral.submit')}}</span>
                         </b-button>
                       </div>
                     </b-col>

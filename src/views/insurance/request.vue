@@ -5,11 +5,14 @@ import {useI18n} from "vue-i18n";
 import {onMounted, ref} from "vue";
 import axiosInstance from "@/plugins/axios";
 import backend from "@/config/backend";
-import {useRoute} from "vue-router";
+import {useRoute, useRouter} from "vue-router";
 import Swal from "sweetalert2";
+import {useStore} from "vuex";
 
 const i18n = useI18n()
 const route = useRoute()
+const router = useRouter()
+const store = useStore()
 
 const title = i18n.t('menu.insuranceRequest')
 const items = [
@@ -41,8 +44,17 @@ function getInsuranceOption() {
 
 function submit() {
   axiosInstance.post(backend.createInsuranceRequest(route.params.id), fieldValues.value).then(() => {
-    Swal.fire("Thanks for submitting")
-  })
+    store.commit('user/INSURANCE_REQUEST_CREATED')
+    router.push({name: "Insurance"})
+    Swal.fire({
+      title: i18n.t('insurance-request.submittedSuccessfully'),
+      icon: "success",
+      position: "top-end",
+      showConfirmButton: false,
+      width: '300px',
+      timer: 1500
+    })
+  });
 }
 </script>
 
@@ -53,7 +65,7 @@ function submit() {
       <b-col lg="12">
         <b-card no-body>
           <b-card-header class="align-items-center d-flex">
-            <b-card-title class="mb-0 flex-grow-1">Request Form</b-card-title>
+            <b-card-title class="mb-0 flex-grow-1">{{ $t('insurance-request.title') }}</b-card-title>
           </b-card-header>
           <form @submit.prevent="submit">
             <b-card-body>
@@ -72,7 +84,7 @@ function submit() {
             </b-card-body>
             <b-card-footer>
               <button class="btn btn-primary w-100" type="submit">
-                Submit
+                {{$t('insurance-request.submit')}}
               </button>
             </b-card-footer>
           </form>

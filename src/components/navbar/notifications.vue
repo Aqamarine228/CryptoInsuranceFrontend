@@ -1,16 +1,70 @@
 <script setup>
 
 import SimpleBar from "simplebar-vue";
+import {computed, ref} from "vue";
+import {useStore} from "vuex";
+import axiosInstance from "@/plugins/axios";
+import backend from "@/config/backend";
+import notificationTypes from "../notifications/notificationTypes";
+
+const store = useStore()
+
+const notifications = ref([])
+const loading = ref(true)
+const selectedNotifications = ref([])
+const unreadNotificationsCount = ref(store.getters['user/user'].unread_notifications_count)
+
+const buttonsDisabled = computed(() => !selectedNotifications.value.length)
+
+function getNotifications() {
+  axiosInstance.get(backend.notifications).then((response) => {
+    notifications.value = response;
+    loading.value = false;
+  })
+  markNotificationsAsRead()
+}
+
+function deleteNotifications() {
+  loading.value = true;
+  axiosInstance.delete(backend.notifications, {params: {notifications: selectedNotifications.value}})
+      .then(() => getNotifications())
+  selectedNotifications.value = [];
+}
+
+function markNotificationsAsRead() {
+  unreadNotificationsCount.value = 0;
+  axiosInstance.post(backend.notificationsMarkAsRead, {notifications: selectedNotifications.value});
+}
+
+function selectAllNotifications() {
+  if (selectedNotifications.value.length === notifications.value.length) {
+    selectedNotifications.value = [];
+    return;
+  }
+
+  selectedNotifications.value = [];
+  notifications.value.forEach((el) => selectedNotifications.value.push(el.id))
+}
 </script>
 
 <template>
   <div class="dropdown topbar-head-dropdown ms-1 header-item">
-    <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle"
-            id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false">
+    <button type="button"
+            class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle"
+            id="page-header-notifications-dropdown"
+            @click="getNotifications"
+            data-bs-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+    >
       <i class="bx bx-bell fs-22"></i>
-      <span class="position-absolute topbar-badge fs-10 translate-middle badge rounded-pill bg-danger">
-                3<span class="visually-hidden">unread messages</span></span>
+      <span
+          v-if="unreadNotificationsCount > 0"
+          class="position-absolute topbar-badge fs-10 translate-middle badge rounded-pill bg-danger"
+      >
+                {{ unreadNotificationsCount }}<span
+          class="visually-hidden">{{ $t('notifications.unreadMessages') }}</span>
+      </span>
     </button>
     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
          aria-labelledby="page-header-notifications-dropdown">
@@ -19,269 +73,50 @@ import SimpleBar from "simplebar-vue";
           <b-row class="align-items-center">
             <b-col>
               <h6 class="m-0 fs-16 fw-semibold text-white">
-                Notifications
+                {{ $t('notifications.title') }}
               </h6>
             </b-col>
-            <b-col cols="auto" class="dropdown-tabs">
-              <b-badge variant="light-subtle" class="bg-light-subtle text-body fs-13"> 4 New</b-badge>
+            <b-col cols="auto">
+              <button class="btn btn-primary btn-sm mx-1" @click.stop="selectAllNotifications">
+                {{$t('notifications.selectAll')}}
+              </button>
+              <button class="btn btn-danger btn-sm" @click.stop="deleteNotifications" :disabled="buttonsDisabled">
+                {{$t('notifications.delete')}}
+              </button>
             </b-col>
           </b-row>
-        </div>
-
-        <div class="px-2 pt-2">
-          <ul class="nav nav-tabs dropdown-tabs nav-tabs-custom" data-dropdown-tabs="true"
-              id="notificationItemsTab" role="tablist">
-            <li class="nav-item">
-              <b-link class="nav-link active" data-bs-toggle="tab" href="#all-noti-tab" role="tab"
-                      aria-selected="false" @click.capture.stop>
-                All (4)
-              </b-link>
-            </li>
-            <li class="nav-item">
-              <b-link class="nav-link" data-bs-toggle="tab" href="#messages-tab" role="tab" aria-selected="true"
-                      @click.capture.stop>
-                Messages
-              </b-link>
-            </li>
-            <li class="nav-item">
-              <b-link class="nav-link" data-bs-toggle="tab" href="#alerts-tab" role="tab" aria-selected="false"
-                      @click.capture.stop>
-                Alerts
-              </b-link>
-            </li>
-          </ul>
         </div>
       </div>
 
       <div class="tab-content" id="notificationItemsTabContent">
 
-        <div class="tab-pane fade py-2 ps-2 show active" id="all-noti-tab" role="tabpanel">
-          <SimpleBar data-simplebar style="max-height: 300px" class="pe-2">
-            <div class="text-reset notification-item d-block dropdown-item position-relative">
+        <div class="m-lg-5 d-flex align-items-center justify-content-center" v-if="loading"><span
+            class="spinner-border"></span></div>
+
+        <div class="tab-pane fade py-2 ps-2 show active" v-else>
+          <SimpleBar data-simplebar style="max-height: 300px" class="pe-2" v-if="notifications.length > 0">
+            <div
+                v-for="notification in notifications"
+                class="text-reset notification-item d-block dropdown-item position-relative"
+                :key="notification.id"
+            >
               <div class="d-flex">
-                <div class="avatar-xs me-3 flex-shrink-0">
-                          <span class="avatar-title bg-info-subtle text-info rounded-circle fs-16">
-                            <i class="bx bx-badge-check"></i>
-                          </span>
-                </div>
-                <div class="flex-grow-1">
-                  <b-link href="#!" class="stretched-link">
-                    <h6 class="mt-0 mb-2 lh-base">
-                      Your <b>Elite</b> author Graphic Optimization
-                      <span class="text-secondary">reward</span> is
-                      ready!
-                    </h6>
-                  </b-link>
-                  <p class="mb-0 fs-11 fw-medium text-uppercase text-muted">
-                    <span><i class="mdi mdi-clock-outline"></i> Just 30 sec ago</span>
-                  </p>
-                </div>
+                <component :is="notificationTypes[notification.type].navbar" :notification="notification" />
+
                 <div class="px-2 fs-15">
-                  <input class="form-check-input" type="checkbox"/>
+                  <input
+                      class="form-check-input"
+                      :value="notification.id"
+                      v-model="selectedNotifications"
+                      type="checkbox"
+                  />
                 </div>
               </div>
-            </div>
-
-            <div class="text-reset notification-item d-block dropdown-item position-relative">
-              <div class="d-flex">
-                <img src="@/assets/images/users/avatar-2.jpg"
-                     class="me-3 rounded-circle avatar-xs flex-shrink-0"
-                     alt="user-pic"/>
-                <div class="flex-grow-1">
-                  <b-link href="#!" class="stretched-link">
-                    <h6 class="mt-0 mb-1 fs-13 fw-semibold">
-                      Angela Bernier
-                    </h6>
-                  </b-link>
-                  <div class="fs-13 text-muted">
-                    <p class="mb-1">
-                      Answered to your comment on the cash flow forecast's graph 🔔.
-                    </p>
-                  </div>
-                  <p class="mb-0 fs-11 fw-medium text-uppercase text-muted">
-                    <span><i class="mdi mdi-clock-outline"></i> 48 min ago</span>
-                  </p>
-                </div>
-                <div class="px-2 fs-15">
-                  <input class="form-check-input" type="checkbox"/>
-                </div>
-              </div>
-            </div>
-
-            <div class="text-reset notification-item d-block dropdown-item position-relative">
-              <div class="d-flex">
-                <div class="avatar-xs me-3 flex-shrink-0">
-                          <span class="avatar-title bg-danger-subtle text-danger rounded-circle fs-16">
-                            <i class="bx bx-message-square-dots"></i>
-                          </span>
-                </div>
-                <div class="flex-grow-1">
-                  <b-link href="#!" class="stretched-link">
-                    <h6 class="mt-0 mb-2 fs-13 lh-base">
-                      You have received <b class="text-success">20</b> new messages in the conversation
-                    </h6>
-                  </b-link>
-                  <p class="mb-0 fs-11 fw-medium text-uppercase text-muted">
-                            <span><i class="mdi mdi-clock-outline"></i> 2 hrs
-                              ago</span>
-                  </p>
-                </div>
-                <div class="px-2 fs-15">
-                  <input class="form-check-input" type="checkbox"/>
-                </div>
-              </div>
-            </div>
-
-            <div class="text-reset notification-item d-block dropdown-item position-relative">
-              <div class="d-flex">
-                <img src="@/assets/images/users/avatar-8.jpg"
-                     class="me-3 rounded-circle avatar-xs flex-shrink-0"
-                     alt="user-pic"/>
-                <div class="flex-grow-1">
-                  <b-link href="#!" class="stretched-link">
-                    <h6 class="mt-0 mb-1 fs-13 fw-semibold">
-                      Maureen Gibson
-                    </h6>
-                  </b-link>
-                  <div class="fs-13 text-muted">
-                    <p class="mb-1">
-                      We talked about a project on linkedin.
-                    </p>
-                  </div>
-                  <p class="mb-0 fs-11 fw-medium text-uppercase text-muted">
-                            <span><i class="mdi mdi-clock-outline"></i> 4 hrs
-                              ago</span>
-                  </p>
-                </div>
-                <div class="px-2 fs-15">
-                  <input class="form-check-input" type="checkbox"/>
-                </div>
-              </div>
-            </div>
-
-            <div class="my-3 text-center">
-              <b-button type="button" variant="soft-success">
-                View All Notifications
-                <i class="ri-arrow-right-line align-middle"></i>
-              </b-button>
             </div>
           </SimpleBar>
-        </div>
-
-        <div class="tab-pane fade py-2 ps-2" id="messages-tab" role="tabpanel" aria-labelledby="messages-tab">
-          <SimpleBar data-simplebar style="max-height: 300px" class="pe-2">
-            <div class="text-reset notification-item d-block dropdown-item">
-              <div class="d-flex">
-                <img src="@/assets/images/users/avatar-3.jpg" class="me-3 rounded-circle avatar-xs"
-                     alt="user-pic"/>
-                <div class="flex-grow-1">
-                  <b-link href="#!" class="stretched-link">
-                    <h6 class="mt-0 mb-1 fs-13 fw-semibold">
-                      James Lemire
-                    </h6>
-                  </b-link>
-                  <div class="fs-13 text-muted">
-                    <p class="mb-1">
-                      We talked about a project on linkedin.
-                    </p>
-                  </div>
-                  <p class="mb-0 fs-11 fw-medium text-uppercase text-muted">
-                    <span><i class="mdi mdi-clock-outline"></i> 30 min ago</span>
-                  </p>
-                </div>
-                <div class="px-2 fs-15">
-                  <input class="form-check-input" type="checkbox"/>
-                </div>
-              </div>
-            </div>
-
-            <div class="text-reset notification-item d-block dropdown-item">
-              <div class="d-flex">
-                <img src="@/assets/images/users/avatar-2.jpg" class="me-3 rounded-circle avatar-xs"
-                     alt="user-pic"/>
-                <div class="flex-grow-1">
-                  <b-link href="#!" class="stretched-link">
-                    <h6 class="mt-0 mb-1 fs-13 fw-semibold">
-                      Angela Bernier
-                    </h6>
-                  </b-link>
-                  <div class="fs-13 text-muted">
-                    <p class="mb-1">
-                      Answered to your comment on the cash flow
-                      forecast's graph 🔔.
-                    </p>
-                  </div>
-                  <p class="mb-0 fs-11 fw-medium text-uppercase text-muted">
-                            <span><i class="mdi mdi-clock-outline"></i> 2 hrs
-                              ago</span>
-                  </p>
-                </div>
-                <div class="px-2 fs-15">
-                  <input class="form-check-input" type="checkbox"/>
-                </div>
-              </div>
-            </div>
-
-            <div class="text-reset notification-item d-block dropdown-item">
-              <div class="d-flex">
-                <img src="@/assets/images/users/avatar-6.jpg" class="me-3 rounded-circle avatar-xs"
-                     alt="user-pic"/>
-                <div class="flex-grow-1">
-                  <b-link href="#!" class="stretched-link">
-                    <h6 class="mt-0 mb-1 fs-13 fw-semibold">
-                      Kenneth Brown
-                    </h6>
-                  </b-link>
-                  <div class="fs-13 text-muted">
-                    <p class="mb-1">
-                      Mentionned you in his comment on 📃 invoice
-                      #12501.
-                    </p>
-                  </div>
-                  <p class="mb-0 fs-11 fw-medium text-uppercase text-muted">
-                            <span><i class="mdi mdi-clock-outline"></i> 10 hrs
-                              ago</span>
-                  </p>
-                </div>
-                <div class="px-2 fs-15">
-                  <input class="form-check-input" type="checkbox"/>
-                </div>
-              </div>
-            </div>
-
-            <div class="text-reset notification-item d-block dropdown-item">
-              <div class="d-flex">
-                <img src="@/assets/images/users/avatar-8.jpg" class="me-3 rounded-circle avatar-xs"
-                     alt="user-pic"/>
-                <div class="flex-grow-1">
-                  <b-link href="#!" class="stretched-link">
-                    <h6 class="mt-0 mb-1 fs-13 fw-semibold">
-                      Maureen Gibson
-                    </h6>
-                  </b-link>
-                  <div class="fs-13 text-muted">
-                    <p class="mb-1">
-                      We talked about a project on linkedin.
-                    </p>
-                  </div>
-                  <p class="mb-0 fs-11 fw-medium text-uppercase text-muted">
-                            <span><i class="mdi mdi-clock-outline"></i> 3 days
-                              ago</span>
-                  </p>
-                </div>
-                <div class="px-2 fs-15">
-                  <input class="form-check-input" type="checkbox"/>
-                </div>
-              </div>
-            </div>
-
-            <div class="my-3 text-center">
-              <b-button type="button" variant="soft-success">
-                View All Messages
-                <i class="ri-arrow-right-line align-middle"></i>
-              </b-button>
-            </div>
-          </SimpleBar>
+          <div class="text-muted text-center" v-else>
+            {{$t('notifications.noNotifications')}}
+          </div>
         </div>
 
         <div class="tab-pane fade p-4" id="alerts-tab" role="tabpanel" aria-labelledby="alerts-tab">
@@ -290,7 +125,7 @@ import SimpleBar from "simplebar-vue";
           </div>
           <div class="text-center pb-5 mt-2">
             <h6 class="fs-18 fw-semibold lh-base">
-              Hey! You have no any notifications
+              {{ $t('notifications.noNotifications') }}
             </h6>
           </div>
         </div>

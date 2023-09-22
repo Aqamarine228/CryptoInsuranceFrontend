@@ -9,13 +9,13 @@ const router = useRouter()
 
 const user = computed(() => store.getters['user/user'])
 
-function logOut() {
+async function logOut() {
   store.commit('auth/LOGOUT');
   localStorage.clear();
-  sessionStorage.clear()
-  router.push({name: "login"})
+  sessionStorage.clear();
+  router.go();
+  router.push({name: 'login'});
 }
-
 </script>
 
 <template>
@@ -33,20 +33,20 @@ function logOut() {
       <h6 class="dropdown-header">Welcome {{user.first_name}}!</h6>
       <router-link class="dropdown-item" to="#"><i
           class="mdi mdi-wallet text-muted fs-16 align-middle me-1"></i>
-        <span class="align-middle">Balance : <b>$5971.67</b></span>
+        <span class="align-middle">Balance : <b>${{user.balance}}</b></span>
       </router-link>
-      <router-link class="dropdown-item" to="#">
-        <b-badge variant="success-subtle"
-                 class="bg-success-subtle text-success mt-1 float-end">New
-        </b-badge>
-        <i
-            class="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i>
-        <span class="align-middle">Settings</span>
-      </router-link>
-      <router-link class="dropdown-item" to="#" href="#" @click="logOut"><i
-          class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i>
+<!--      <router-link class="dropdown-item" to="#">-->
+<!--        <b-badge variant="success-subtle"-->
+<!--                 class="bg-success-subtle text-success mt-1 float-end">New-->
+<!--        </b-badge>-->
+<!--        <i-->
+<!--            class="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i>-->
+<!--        <span class="align-middle">Settings</span>-->
+<!--      </router-link>-->
+      <button class="dropdown-item" @click="logOut">
+        <i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i>
         <span class="align-middle" data-key="t-logout">Logout</span>
-      </router-link>
+      </button>
     </div>
   </div>
 </template>

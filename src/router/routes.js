@@ -1,7 +1,7 @@
-import {authenticated, defaultMiddlewares, noReferralRequests, unauthenticated, withUser} from "@/router/middlewares";
-import store from "@/state/store";
+import {authenticated, defaultMiddlewares, noReferralRequests, unauthenticated, withUser, noInsuranceRequests} from "@/router/middlewares";
 
 const becomeReferralMiddlewares = [...defaultMiddlewares, noReferralRequests]
+const insuranceRequestMiddlewares = [...defaultMiddlewares, noInsuranceRequests]
 
 export default [
   {
@@ -49,25 +49,13 @@ export default [
     },
   },
   {
-    path: "/logout",
-    name: "logout",
-    meta: {
-      title: "Logout", authRequired: true,
-      beforeResolve(routeTo, routeFrom, next) {
-        store.commit('auth/LOGOUT');
-        localStorage.clear();
-        sessionStorage.clear();
-        next({name: 'login'});
-      },
-      middleware: [authenticated]
-    },
-    component: () => import("../views/auth/logout/basic")
-  },
-  {
     path: "/",
     name: "default",
     meta: {
       title: "Dashboard",
+      beforeResolve(routeTo, routeFrom, next) {
+        next({name: 'Insurance'});
+      },
     },
     component: () => import("../views/dashboard/ecommerce/index.vue"),
   },
@@ -118,7 +106,16 @@ export default [
     name: "Insurance request",
     meta: {
       title: "Insurance Request",
+      middleware: insuranceRequestMiddlewares,
     },
     component: () => import("../views/insurance/request.vue")
+  },
+  {
+    path: "/notification/:id",
+    name: "Notification",
+    meta: {
+      title: "Notification"
+    },
+    component: () => import("../views/notification/index.vue")
   }
 ];

@@ -131,7 +131,8 @@ export default [
     path: "/:pathMatch(.*)*",
     name: "Not Found",
     meta: {
-      title: "Not Found"
+      title: "Not Found",
+      middleware: [],
     },
     component: () => import('../views/errors/404.vue')
   }

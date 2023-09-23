@@ -1,7 +1,8 @@
-FROM node:20.0-alpine
+FROM node:19.0-alpine
 WORKDIR /app/frontend
 
-COPY yarn.lock ./
-
-RUN yarn install
 COPY . ./
+
+RUN apk add build-base
+RUN apk add --update --no-cache python3 && ln -sf python3 /usr/bin/python
+RUN yarn install

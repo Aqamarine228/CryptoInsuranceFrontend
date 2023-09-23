@@ -137,5 +137,9 @@
   "user-menu.title": "Menu",
   "user-menu.welcome": "Welcome",
   "user-menu.balance": "Balance",
-  "user-menu.logout": "Logout"
+  "user-menu.logout": "Logout",
+
+  "404.title": "Sorry, Page not Found",
+  "404.description": "The page you are looking for not available",
+  "404.backToHome": "Back To Home"
 }

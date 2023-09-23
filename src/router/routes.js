@@ -126,5 +126,13 @@ export default [
       title: "Notification"
     },
     component: () => import("../views/notification/index.vue")
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    name: "Not Found",
+    meta: {
+      title: "Not Found"
+    },
+    component: () => import('../views/errors/404.vue')
   }
 ];

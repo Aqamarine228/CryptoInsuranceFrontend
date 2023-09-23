@@ -137,5 +137,9 @@
     "user-menu.title": "Меню",
     "user-menu.welcome": "Добро пожаловать",
     "user-menu.balance": "Баланс",
-    "user-menu.logout": "Выход"
+    "user-menu.logout": "Выход",
+
+    "404.title": "Извините, страница не найдена",
+    "404.description": "Страница, которую вы ищете, недоступна",
+    "404.backToHome": "Вернуться домой"
 }

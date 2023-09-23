@@ -1,6 +1,7 @@
 FROM node:20.0-alpine
 WORKDIR /app/frontend
 
-COPY package.json ./
-RUN npm install 
+COPY yarn.lock ./
+
+RUN yarn install
 COPY . ./

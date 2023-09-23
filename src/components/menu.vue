@@ -146,15 +146,15 @@ export default {
         <span data-key="t-menu"> {{ $t("menu.title") }}</span>
       </li>
       <li class="nav-item">
-        <router-link :to="{name: 'referrals'}" class="nav-link menu-link">
-          <i class="bx bxs-user-detail"></i>
-          <span> {{ $t("menu.referrals") }}</span>
-        </router-link>
-      </li>
-      <li class="nav-item">
         <router-link :to="{name: 'Insurance'}" class="nav-link menu-link">
           <i class="bx bxs-buildings"></i>
           <span> {{ $t("menu.insurance") }}</span>
+        </router-link>
+      </li>
+      <li class="nav-item">
+        <router-link :to="{name: 'referrals'}" class="nav-link menu-link">
+          <i class="bx bxs-user-detail"></i>
+          <span> {{ $t("menu.referrals") }}</span>
         </router-link>
       </li>
     </ul>

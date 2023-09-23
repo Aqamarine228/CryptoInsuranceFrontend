@@ -3,8 +3,8 @@
 import {onMounted, ref} from "vue";
 import axiosInstance from "@/plugins/axios";
 import backend from "@/config/backend";
-import moment from "moment";
 import {useRouter} from "vue-router";
+import moment from "@/plugins/moment";
 
 const router = useRouter()
 
@@ -40,7 +40,7 @@ function loadPacks(optionId) {
 }
 
 function readableDuration(seconds) {
-  return moment.duration(seconds, "seconds").humanize()
+  return moment().duration(seconds, "seconds").humanize()
 }
 
 function changeSubscriptionOption(optionId) {

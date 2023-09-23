@@ -49,6 +49,7 @@
   "menu.notifications": "Notifications",
 
   "referrals.programTitle": "Our Referral Program",
+  "referrals.program": "These terms and conditions outline the rules and regulations for the use of Company\nName's Website, located at Website.com.\nBy accessing this website we assume you accept these terms and conditions. Do not continue to use Website Name if you do not agree to take all of the terms and conditions stated on this page.\nMost interactive websites use cookies to let us retrieve the user's details for each visit. Cookies are used by our website to enable the functionality of certain areas to make it easier for people visiting our website. Some of our affiliate/advertising partners may also use cookies.",
   "referrals.becomeReferral": "Become Referral",
   "referrals.thanksForSubmission": "Thanks for Submission",
   "referrals.submittedText": "Your request was submitted and will be reviewed. You will be notified by notification inside our application and emailed",
@@ -131,5 +132,10 @@
   "notifications.insuranceRequestApprovedText": "You can now withdraw your balance",
   "notifications.referralRequestApproved": "Congratulations, your referral request has been successfully approved!",
   "notifications.referralRequestRejected": "Unfortunately, your referral request has been rejected",
-  "notifications.referralRequestToReferralsPage": "To Referrals Page"
+  "notifications.referralRequestToReferralsPage": "To Referrals Page",
+
+  "user-menu.title": "Menu",
+  "user-menu.welcome": "Welcome",
+  "user-menu.balance": "Balance",
+  "user-menu.logout": "Logout"
 }

@@ -11,6 +11,7 @@
     "login.pleaseWait": "Пожалуйста, подождите",
 
     "register.signUp": "Зарегистрируйтесь",
+    "referrals.program": "Настоящие условия и положения определяют правила и положения использования веб-сайта компании\nНазвание, расположенного по адресу Website.com.\nПосещая этот веб-сайт, мы предполагаем, что вы принимаете эти условия. Не продолжайте использовать Название веб-сайта, если вы не согласны принять все условия, изложенные на этой странице.\nБольшинство интерактивных веб-сайтов используют файлы cookie, позволяющие нам получать данные пользователя при каждом посещении. Файлы cookie используются нашим веб-сайтом для обеспечения функциональности определенных областей. чтобы облегчить людям посещение нашего веб-сайта. Некоторые из наших аффилированных/рекламных партнеров также могут использовать файлы cookie.",
     "register.signIn": "Войти",
     "register.pleaseWait": "Пожалуйста, подождите",
     "register.email": "Электронная почта",
@@ -66,6 +67,7 @@
     "referrals.amount": "Сумма",
     "referrals.date": "Дата",
     "referrals.name": "Имя",
+    "referrals.tableTitle": "Рефералы",
     "referrals.overall_income": "Общий доход",
     "referrals.last_income": "Последний доход",
     "referrals.dailyIncomeOverview": "Обзор ежедневного дохода",
@@ -105,6 +107,7 @@
     "insurance.boughtAt": "Куплено",
     "insurance.submitInsuranceRequest": "Отправить запрос на страхование",
     "insurance.notAbleToSubmitInsuranceRequest": "Вы не можете отправить новый запрос на страхование, поскольку он находится на рассмотрении",
+    "insurance.more": "Больше информации",
 
     "insurance-request.title": "Форма запроса",
     "insurance-request.submitSuccessful": "Запрос отправлен успешно",
@@ -129,5 +132,10 @@
     "notifications.insuranceRequestApprovedText": "Теперь вы можете снять свой баланс",
     "notifications.referralRequestApproved": "Поздравляем, ваш реферальный запрос успешно одобрен!",
     "notifications.referralRequestRejected": "К сожалению, ваш запрос на реферал был отклонен",
-    "notifications.referralRequestToReferralsPage": "На страницу рефералов"
+    "notifications.referralRequestToReferralsPage": "На страницу рефералов",
+
+    "user-menu.title": "Меню",
+    "user-menu.welcome": "Добро пожаловать",
+    "user-menu.balance": "Баланс",
+    "user-menu.logout": "Выход"
 }

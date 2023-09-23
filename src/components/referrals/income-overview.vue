@@ -4,12 +4,19 @@ import {onMounted, ref} from "vue";
 import axiosInstance from "@/plugins/axios";
 import backend from "@/config/backend";
 import timePeriods from "@/common/timePeriods";
+import {useStore} from "vuex";
+import ru from "apexcharts/dist/locales/ru.json";
+import en from "apexcharts/dist/locales/en.json";
+
+const store = useStore()
 
 const chartOptions = {
   chart: {
     height: 290,
     type: "area",
     toolbar: "false",
+    locales: [ru, en],
+    defaultLocale: store.getters['locale/currentLocale'],
   },
   dataLabels: {
     enabled: false,
@@ -44,7 +51,6 @@ const selectedTimePeriod = ref(customTimePeriods[0].value);
 const series = ref([])
 
 onMounted(() => getData())
-
 
 function changeTimePeriod(event) {
   selectedTimePeriod.value = event.target.value

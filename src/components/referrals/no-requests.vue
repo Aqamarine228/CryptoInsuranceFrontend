@@ -31,14 +31,7 @@
         <b-card-body class="p-4">
           <div>
             <h5>{{ $t('referrals.programTitle') }}!</h5>
-            <p class="text-muted">These terms and conditions outline the rules and regulations for the use of Company
-              Name's Website, located at Website.com.</p>
-            <p class="text-muted">By accessing this website we assume you accept these terms and conditions. Do not
-              continue to use Website Name if you do not agree to take all of the terms and conditions stated on this
-              page.</p>
-            <p class="text-muted">Most interactive websites use cookies to let us retrieve the user's details for each
-              visit. Cookies are used by our website to enable the functionality of certain areas to make it easier
-              for people visiting our website. Some of our affiliate/advertising partners may also use cookies.</p>
+            <p class="text-muted">{{$t('referrals.program')}}</p>
           </div>
 
           <div class="text-end">

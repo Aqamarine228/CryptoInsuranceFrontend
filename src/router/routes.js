@@ -23,6 +23,15 @@ export default [
     },
   },
   {
+    path: "/terms-conditions",
+    name: "Terms Conditions",
+    component: () => import("../views/account/terms-conditions.vue"),
+    meta: {
+      title: "Terms & Conditions",
+      middleware: [],
+    },
+  },
+  {
     path: "/email-verification",
     name: "Email verification",
     component: () => import("../views/account/email-verification.vue"),

@@ -25,15 +25,15 @@ async function logOut() {
               <span class="d-flex align-items-center">
                 <span class="text-start ms-xl-2">
                   <span class=" d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{user.first_name}} {{user.last_name}}</span>
-                  <span class="d-none d-xl-block ms-1 fs-12 user-name-sub-text">Menu</span>
+                  <span class="d-none d-xl-block ms-1 fs-12 user-name-sub-text">{{$t('user-menu.title')}}</span>
                 </span>
               </span>
     </button>
     <div class="dropdown-menu dropdown-menu-end">
-      <h6 class="dropdown-header">Welcome {{user.first_name}}!</h6>
+      <h6 class="dropdown-header">{{$t('user-menu.welcome')}} {{user.first_name}}!</h6>
       <router-link class="dropdown-item" to="#"><i
           class="mdi mdi-wallet text-muted fs-16 align-middle me-1"></i>
-        <span class="align-middle">Balance : <b>${{user.balance}}</b></span>
+        <span class="align-middle">{{$t('user-menu.balance')}} : <b>${{user.balance}}</b></span>
       </router-link>
 <!--      <router-link class="dropdown-item" to="#">-->
 <!--        <b-badge variant="success-subtle"-->
@@ -45,7 +45,7 @@ async function logOut() {
 <!--      </router-link>-->
       <button class="dropdown-item" @click="logOut">
         <i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i>
-        <span class="align-middle" data-key="t-logout">Logout</span>
+        <span class="align-middle" data-key="t-logout">{{$t('user-menu.logout')}}</span>
       </button>
     </div>
   </div>

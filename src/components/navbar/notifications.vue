@@ -72,7 +72,7 @@ function selectAllNotifications() {
         <div class="p-3">
           <b-row class="align-items-center">
             <b-col>
-              <h6 class="m-0 fs-16 fw-semibold text-white">
+              <h6 class="m-0 fs-13 fw-semibold text-white">
                 {{ $t('notifications.title') }}
               </h6>
             </b-col>

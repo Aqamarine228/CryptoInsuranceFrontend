@@ -92,7 +92,7 @@ function register() {
                   <input type="email" class="form-control" v-model="user.email"
                          :placeholder="$t('register.enterEmail')"
                          required :class="{'is-invalid': hasEmailErrors}">
-                  <div v-for="(message, index) in validationErrors.email" :key="index"
+                  <div v-for="(message, index) in validationErrors?.email" :key="index"
                        class="invalid-feedback">
                     <span>{{ message }}</span>
                   </div>
@@ -117,7 +117,8 @@ function register() {
                   <input type="password" class="form-control" v-model="user.password"
                          :placeholder="$t('register.enterPassword')"
                          required :class="{'is-invalid': hasPasswordErrors}">
-                  <div v-for="(message, index) in validationErrors.password" :key="index"
+                  <p class="mb-0 fs-12 text-muted mt-1">{{ $t('register.strongPassword') }}</p>
+                  <div v-for="(message, index) in validationErrors?.password" :key="index"
                        class="invalid-feedback">
                     <span>{{ message }}</span>
                   </div>

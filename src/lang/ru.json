@@ -28,6 +28,7 @@
     "register.enterFirstName": "Введите имя",
     "register.enterLastName": "Введите фамилию",
     "register.enterPasswordConfirmation": "Введите пароль еще раз",
+    "register.strongPassword": "Длина не менее 8 символов, должен содержать несколько регистровых букв, цифр и специальных символов",
 
     "verify-email.weHaveSentYouTheLinkTo": "Мы отправили вам ссылку",
     "verify-email.verifyYourEmail": "Подтвердите свой адрес электронной почты",

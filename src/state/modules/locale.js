@@ -1,5 +1,7 @@
+import getDefaultLocale from "@/common/getDefaultLocale";
+
 export const state = {
-    currentLocale: sessionStorage.getItem('locale.current') || `${window.navigator.language[0]}${window.navigator.language[1]}`
+    currentLocale: sessionStorage.getItem('locale.current') || getDefaultLocale()
 }
 
 export const mutations = {

@@ -27,6 +27,7 @@
   "register.enterFirstName": "Enter First Name",
   "register.enterLastName": "Enter Last Name",
   "register.enterPasswordConfirmation": "Enter password again",
+  "register.strongPassword":  "At least 8 characters long, must contain multiple case letters, numbers and special symbols",
 
   "verify-email.weHaveSentYouTheLinkTo": "We have sent you the link to",
   "verify-email.verifyYourEmail": "Verify your email",

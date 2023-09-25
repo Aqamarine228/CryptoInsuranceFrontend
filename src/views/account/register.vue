@@ -2,12 +2,12 @@
 import axiosInstance from "@/plugins/axios";
 import backend from "@/config/backend";
 import {computed, ref} from "vue";
-import {useRoute} from "vue-router";
+import {useRoute, useRouter} from "vue-router";
 import {useStore} from "vuex";
 import Layout from "@/layouts/unauthorized.vue"
 
 const route = useRoute()
-const router = useRoute()
+const router = useRouter()
 const store = useStore()
 
 const user = ref({

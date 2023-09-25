@@ -109,6 +109,7 @@ export default {
       } else {
         document.documentElement.setAttribute("data-bs-theme", "dark");
       }
+      this.$router.go()
     },
     initTopbarComponents() {
       function updateCartPrice() {

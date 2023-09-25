@@ -68,6 +68,7 @@
       },
     },
     mounted() {
+
       if(localStorage.getItem('hoverd')=='true'){
          document.documentElement.setAttribute('data-sidebar-size', 'sm-hover-active');
       }

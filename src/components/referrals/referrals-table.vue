@@ -93,9 +93,9 @@ function sortByColumn(column) {
           <thead class="table-light">
             <tr class="text-muted">
               <th scope="col" style="width: 20%" v-for="item in columns" :key="item.name">
-                <span class="text-body" v-if="item.sortable === false">{{ this.$t(item.label) }}</span>
+                <span class="text-body" v-if="item.sortable === false">{{ $t(item.label) }}</span>
                 <a v-else href="" @click.prevent="sortByColumn(item.name)" class="text-body">
-                  {{ this.$t(item.label) }}
+                  {{ $t(item.label) }}
                   <i v-if="filterableColumnIcons[item.name]" class="bx"
                      :class="filterableColumnIcons[item.name]"></i>
                 </a>

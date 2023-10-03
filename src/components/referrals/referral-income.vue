@@ -89,13 +89,13 @@ function sortByColumn(column) {
 <template>
   <b-card no-body class="card-height-100">
     <b-card-header class="align-items-center d-flex">
-      <b-card-title class="mb-0 flex-grow-1">{{ this.$t("referrals.referralIncome") }}</b-card-title>
+      <b-card-title class="mb-0 flex-grow-1">{{ $t("referrals.referralIncome") }}</b-card-title>
       <div class="flex-shrink-0">
         <select class="form-select form-select-sm" aria-label=".form-select-sm example"
                 @change="changeTimePeriod($event)">
           <option v-for="period in timePeriods" :key="period.value" :selected="period.value === selectedTimePeriod"
                   :value="period.value">
-            {{ this.$t(period.label) }}
+            {{ $t(period.label) }}
           </option>
         </select>
       </div>
@@ -107,9 +107,9 @@ function sortByColumn(column) {
           <thead>
           <tr>
             <th scope="col" style="width: 20%" v-for="item in columns" :key="item.name">
-              <span v-if="item.sortable === false">{{ this.$t(item.label) }}</span>
+              <span v-if="item.sortable === false">{{ $t(item.label) }}</span>
               <a v-else href="" @click.prevent="sortByColumn(item.name)" class="text-body">
-                {{ this.$t(item.label) }}
+                {{ $t(item.label) }}
                 <i v-if="filterableColumnIcons[item.name]" class="bx"
                    :class="filterableColumnIcons[item.name]"></i>
               </a>

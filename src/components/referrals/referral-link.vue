@@ -29,7 +29,7 @@ function focusLeft() {
         <b-col>
           <div class="py-4 px-3">
             <h5 class="text-muted text-uppercase fs-13">
-              {{ this.$t('referrals.referralLink')}}
+              {{ $t('referrals.referralLink')}}
             </h5>
             <div class="d-flex align-items-center">
               <div class="flex-shrink-0">

@@ -69,7 +69,7 @@ function getWidgetData() {
         <b-col v-for="(item, index) of crmWidgets" :key="index">
           <div class="py-4 px-3">
             <h5 class="text-muted text-uppercase fs-13">
-              {{ this.$t(item.label) }}
+              {{ $t(item.label) }}
             </h5>
             <div class="d-flex align-items-center">
               <div class="flex-shrink-0">

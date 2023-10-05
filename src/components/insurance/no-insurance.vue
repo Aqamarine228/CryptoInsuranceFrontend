@@ -5,6 +5,7 @@ import axiosInstance from "@/plugins/axios";
 import backend from "@/config/backend";
 import {useRouter} from "vue-router";
 import moment from "@/plugins/moment";
+import durationToReadable from "../../common/durationToReadable";
 
 const router = useRouter()
 
@@ -37,10 +38,6 @@ function loadPacks(optionId) {
         insurancePacks.value = response
         loadingPacks.value = false
       })
-}
-
-function readableDuration(seconds) {
-  return moment().duration(seconds, "seconds").humanize()
 }
 
 function changeSubscriptionOption(optionId) {
@@ -83,10 +80,10 @@ function buy(insurancePackId) {
           </ul>
           <ul class="nav nav-pills arrow-navtabs plan-nav rounded mb-3 p-1" id="pills-tab" role="tablist" v-else>
             <li class="nav-item" role="presentation" v-for="(item, key) in subscriptionOptions" :key="key">
-              <b-button variant="link" class="nav-link fw-semibold"
+              <b-button variant="link" class="nav-link fw-semibold text-capitalize"
                         :class="currentOption.id === item.id ? 'active' : ''"
                         type="button" role="tab" aria-selected="true" @click="changeSubscriptionOption(item.id)">
-                {{ readableDuration(item.duration) }}
+                {{ durationToReadable(item.duration) }}
                 <span class="badge bg-success" v-if="item.sale_percentage !== 0">{{ item.sale_percentage }}% {{$t('insurance.off')}}</span>
               </b-button>
             </li>

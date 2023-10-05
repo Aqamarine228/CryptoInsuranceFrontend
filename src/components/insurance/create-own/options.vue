@@ -5,6 +5,7 @@ import backend from "@/config/backend";
 import axiosInstance from "@/plugins/axios";
 import moment from "moment/moment";
 import {useRouter} from "vue-router";
+import durationToReadable from "../../../common/durationToReadable";
 
 
 const router = useRouter()
@@ -64,15 +65,6 @@ function loadOptions(subscriptionOptionId, coverageOptionId) {
   })
 }
 
-function readableDuration(seconds) {
-  return moment.duration(seconds, "seconds").humanize().replace(
-      /\w\S*/g,
-      function(txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      }
-  );
-}
-
 function changeSubscriptionOption(optionId) {
   selectedSubscriptionOption.value = subscriptionOptions.value.filter((e) => e.id === optionId)[0]
   loadOptions(optionId, selectedCoverageOption.value.id)
@@ -130,10 +122,10 @@ function buy() {
           </ul>
           <ul class="nav nav-pills arrow-navtabs plan-nav rounded mb-3 p-1" id="pills-tab" role="tablist" v-else>
             <li class="nav-item" role="presentation" v-for="(item, key) in subscriptionOptions" :key="key">
-              <b-button variant="link" class="nav-link fw-semibold"
+              <b-button variant="link" class="nav-link fw-semibold text-capitalize"
                         :class="selectedSubscriptionOption.id === item.id ? 'active' : ''"
                         type="button" role="tab" aria-selected="true" @click="changeSubscriptionOption(item.id)">
-                {{ readableDuration(item.duration) }}
+                {{ durationToReadable(item.duration) }}
                 <span class="badge bg-success" v-if="item.sale_percentage !== 0">{{ item.sale_percentage }}% {{$t('insurance.off')}}</span>
               </b-button>
             </li>

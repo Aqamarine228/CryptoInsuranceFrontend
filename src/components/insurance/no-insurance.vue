@@ -4,7 +4,6 @@ import {onMounted, ref} from "vue";
 import axiosInstance from "@/plugins/axios";
 import backend from "@/config/backend";
 import {useRouter} from "vue-router";
-import moment from "@/plugins/moment";
 import durationToReadable from "../../common/durationToReadable";
 
 const router = useRouter()

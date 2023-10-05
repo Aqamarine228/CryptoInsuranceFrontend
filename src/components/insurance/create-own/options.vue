@@ -3,7 +3,6 @@
 import {computed, onMounted, ref} from "vue";
 import backend from "@/config/backend";
 import axiosInstance from "@/plugins/axios";
-import moment from "moment/moment";
 import {useRouter} from "vue-router";
 import durationToReadable from "../../../common/durationToReadable";
 

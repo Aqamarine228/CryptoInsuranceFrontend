@@ -141,6 +141,10 @@ function buy(insurancePackId) {
             </div>
           </div>
 
+          <h6>
+            {{$t('insurance.coverage')}}: {{pack.coverage}}$
+          </h6>
+
           <p class="text-muted">
             {{ pack.description }}
           </p>

@@ -83,7 +83,7 @@ function getData() {
           <option v-for="period in customTimePeriods" :key="period.value"
                   :selected="period.value === selectedTimePeriod"
                   :value="period.value">
-            {{ this.$t(period.label) }}
+            {{ $t(period.label) }}
           </option>
         </select>
       </div>

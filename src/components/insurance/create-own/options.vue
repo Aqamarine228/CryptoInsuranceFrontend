@@ -12,19 +12,24 @@ const router = useRouter()
 const options = ref([]);
 const selectedOptions = ref({});
 const subscriptionOptions = ref([]);
+const coverageOptions = ref([]);
 const selectedSubscriptionOption = ref({});
+const selectedCoverageOption = ref({});
 const loadingSubscriptionOptions = ref(true)
+const loadingCoverageOptions = ref(true)
 const loadingOptions = ref(true);
 const overallPrice = ref(0)
 const creatingInvoice = ref(false)
 
 onMounted(() => {
   loadSubscriptionOptions().then(() => {
-    loadOptions(selectedSubscriptionOption.value.id);
+    loadCoverageOptions().then(() => {
+      loadOptions(selectedSubscriptionOption.value.id, selectedCoverageOption.value.id);
+    })
   })
 })
 
-const buyButtonDisabled = computed(() => selectedOptions.value.length === 0)
+const buyButtonDisabled = computed(() => selectedOptions.value.length === 0 || overallPrice.value <= 0)
 
 function loadSubscriptionOptions() {
   loadingSubscriptionOptions.value = true;
@@ -35,23 +40,46 @@ function loadSubscriptionOptions() {
   })
 }
 
-function loadOptions(optionId) {
+function loadCoverageOptions() {
+  loadingCoverageOptions.value = true;
+  return axiosInstance.get(backend.insuranceCoverageOptions).then((response) => {
+    coverageOptions.value = response
+    selectedCoverageOption.value = coverageOptions.value[0];
+    loadingCoverageOptions.value = false;
+  })
+}
+
+function loadOptions(subscriptionOptionId, coverageOptionId) {
   loadingOptions.value = true;
   selectedOptions.value = []
   overallPrice.value = 0
-  axiosInstance.get(backend.insuranceOptions + `?insurance_subscription_option_id=${optionId}`).then((response) => {
+  axiosInstance.get(backend.insuranceOptions, {
+    params: {
+      insurance_subscription_option_id: subscriptionOptionId,
+      insurance_coverage_option_id: coverageOptionId,
+    }
+  }).then((response) => {
     options.value = response
     loadingOptions.value = false;
   })
 }
 
 function readableDuration(seconds) {
-  return moment.duration(seconds, "seconds").humanize()
+  return moment.duration(seconds, "seconds").humanize().replace(
+      /\w\S*/g,
+      function(txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      }
+  );
 }
 
 function changeSubscriptionOption(optionId) {
   selectedSubscriptionOption.value = subscriptionOptions.value.filter((e) => e.id === optionId)[0]
-  loadOptions(optionId)
+  loadOptions(optionId, selectedCoverageOption.value.id)
+}
+
+function changeCoverageOption(option) {
+  loadOptions(selectedSubscriptionOption.value.id, option.id)
 }
 
 function selectOption(optionId, price) {
@@ -69,7 +97,8 @@ function buy() {
   Object.keys(selectedOptions.value).forEach((optionId) => selectedOptions.value[optionId] && options.push(optionId))
   axiosInstance.post(backend.createInsuranceInvoiceFromOptions, {
     insurance_options: options,
-    insurance_subscription_option_id: selectedSubscriptionOption.value.id
+    insurance_subscription_option_id: selectedSubscriptionOption.value.id,
+    insurance_coverage_option_id: selectedCoverageOption.value.id,
   })
       .then(async (response) => {
         await router.push({
@@ -110,6 +139,18 @@ function buy() {
             </li>
           </ul>
         </div>
+
+        <b-form-select v-model="selectedCoverageOption" class="text-center w-100" @change="changeCoverageOption">
+          <option
+              v-for="coverageOption in coverageOptions"
+              :key="coverageOption.id"
+              :value="coverageOption"
+              class="text-center"
+          >
+            {{coverageOption.coverage}}$ - {{coverageOption.price_percentage}}%
+          </option>
+        </b-form-select>
+
       </div>
     </b-col>
   </b-row>

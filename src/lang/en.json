@@ -109,6 +109,7 @@
   "insurance.boughtAt": "Bought At",
   "insurance.submitInsuranceRequest": "Submit Insurance Request",
   "insurance.notAbleToSubmitInsuranceRequest": "You are not able to submit new insurance request because there is one on review",
+  "insurance.coverage": "Coverage",
 
   "insurance-request.title": "Request Form",
   "insurance-request.submittedSuccessfully": "Request submitted successfully",
@@ -142,5 +143,22 @@
 
   "404.title": "Sorry, Page not Found",
   "404.description": "The page you are looking for not available",
-  "404.backToHome": "Back To Home"
+  "404.backToHome": "Back To Home",
+
+  "dashboard.insuranceFund": "Insurance Fund",
+  "dashboard.insurancePaidTotal": "Total Insurance Paid",
+  "dashboard.insurancePaidToday": "Insurance Paid Today",
+  "dashboard.newsTitle": "News Feed",
+  "dashboard.viewAll": "View All",
+
+  "dashboard.getInsuranceToday": "Get Your Assets Secured Today",
+  "dashboard.getInsuranceText1": "We are an innovative and effective insurance solution. We marry the cryptocurrency market and the insurance market to ensure the profit security for all cryptocurrency owners.",
+  "dashboard.getInsuranceText2": "We protect you from scam incidents and empower you to take responsibility for your digital assets. We also provide protection coverage against third-party cyber theft, data breaches and operational interruption.",
+  "dashboard.getInsuranceText3": "Our technology comprises a team of the most professional specialists; their wide range of expertise span blockchain experts, cyber security experts, insurance experts and law enforcement agents.",
+  "dashboard.getInsuranceText4": "We boast of a robust technology of private cryptocurrency experts who can protect and prevent you from losses associated with losing your phone, laptop or any access to your crypto wallets.",
+  "dashboard.getInsuranceButton": "Get It Today",
+  "dashboard.insuranceTitle": "Your Assets Are Safe",
+  "dashboard.insuranceText": "You can submit insurance request at any time",
+  "dashboard.createInsuranceRequest": "Create Insurance Request",
+  "dashboard.insuranceRequestApproved": "Insurance Request Approved"
 }

@@ -33,7 +33,9 @@ function deleteNotifications() {
 
 function markNotificationsAsRead() {
   unreadNotificationsCount.value = 0;
-  axiosInstance.post(backend.notificationsMarkAsRead, {notifications: selectedNotifications.value});
+  axiosInstance.post(backend.notificationsMarkAsRead, {notifications: selectedNotifications.value}).then(() => {
+    store.commit('user/NOTIFICATIONS_READ')
+  });
 }
 
 function selectAllNotifications() {

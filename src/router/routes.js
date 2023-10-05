@@ -62,11 +62,8 @@ export default [
     name: "default",
     meta: {
       title: "Dashboard",
-      beforeResolve(routeTo, routeFrom, next) {
-        next({name: 'Insurance'});
-      },
     },
-    component: () => import("../views/dashboard/ecommerce/index.vue"),
+    component: () => import("../views/dashboard/index.vue"),
   },
   {
     path: "/referrals",

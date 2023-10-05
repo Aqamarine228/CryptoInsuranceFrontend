@@ -10,6 +10,9 @@ export const mutations = {
     },
     INSURANCE_REQUEST_CREATED(state) {
         state.currentUser.has_insurance_request = true
+    },
+    NOTIFICATIONS_READ(state) {
+        state.currentUser.unread_notifications_count = 0
     }
 }
 

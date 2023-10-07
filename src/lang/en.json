@@ -48,6 +48,7 @@
   "menu.insuranceInvoice": "Insurance Invoice",
   "menu.insuranceRequest": "Insurance Request",
   "menu.notifications": "Notifications",
+  "menu.balance": "Balance",
 
   "referrals.programTitle": "Our Referral Program",
   "referrals.program": "These terms and conditions outline the rules and regulations for the use of Company\nName's Website, located at Website.com.\nBy accessing this website we assume you accept these terms and conditions. Do not continue to use Website Name if you do not agree to take all of the terms and conditions stated on this page.\nMost interactive websites use cookies to let us retrieve the user's details for each visit. Cookies are used by our website to enable the functionality of certain areas to make it easier for people visiting our website. Some of our affiliate/advertising partners may also use cookies.",
@@ -102,7 +103,7 @@
   "insurance.buy": "Buy",
   "insurance.selectNeededOptions": "Select Needed Options",
   "insurance.pleaseSelectOptionsFirst": "Please Select Options First",
-  "insurance.buyWithPrice": "Buy {price}$",
+  "insurance.buyWithPrice": "Coverage {coverage}$ - Price {price}$",
   "insurance.select": "Select",
   "insurance.selected": "Selected",
   "insurance.expiresAt": "Expires At",
@@ -160,5 +161,19 @@
   "dashboard.insuranceTitle": "Your Assets Are Safe",
   "dashboard.insuranceText": "You can submit insurance request at any time",
   "dashboard.createInsuranceRequest": "Create Insurance Request",
-  "dashboard.insuranceRequestApproved": "Insurance Request Approved"
+  "dashboard.insuranceRequest": "Insurance Request",
+  "dashboard.withdrawal": "Withdrawal",
+
+  "balance.withdrawalRequestCreatedSuccessfully": "Withdrawal request created successfully",
+  "balance.withdrawalRequests": "Withdrawal Requests",
+  "balance.withdraw": "Withdraw",
+  "balance.cryptocurrency": "Cryptocurrency",
+  "balance.amountInUsd": "Amount In USD To Withdraw",
+  "balance.addressOfWallet": "Address Of Crypto Wallet",
+  "balance.insufficientBalance": "Insufficient Balance",
+  "balance.balance": "Balance",
+  "balance.amount": "Amount",
+  "balance.crypto_amount": "Amount In Cryptocurrency",
+  "balance.status": "Status",
+  "balance.pending": "Pending"
 }

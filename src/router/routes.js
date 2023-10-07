@@ -132,5 +132,13 @@ export default [
       middleware: [],
     },
     component: () => import('../views/errors/404.vue')
+  },
+  {
+    path: "/balance",
+    name: "Balance",
+    meta: {
+      title: "Balance",
+    },
+    component: () => import('../views/balance/index.vue')
   }
 ];

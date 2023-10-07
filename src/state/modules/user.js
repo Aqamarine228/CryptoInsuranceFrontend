@@ -1,3 +1,4 @@
+
 export const state = {
     currentUser: undefined,
 }
@@ -13,6 +14,9 @@ export const mutations = {
     },
     NOTIFICATIONS_READ(state) {
         state.currentUser.unread_notifications_count = 0
+    },
+    WITHDRAWAL_REQUEST_CREATED(state, amount) {
+        state.currentUser.balance -= amount
     }
 }
 

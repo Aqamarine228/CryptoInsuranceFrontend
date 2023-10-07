@@ -31,7 +31,7 @@ async function logOut() {
     </button>
     <div class="dropdown-menu dropdown-menu-end">
       <h6 class="dropdown-header">{{$t('user-menu.welcome')}} {{user.first_name}}!</h6>
-      <router-link class="dropdown-item" to="#"><i
+      <router-link class="dropdown-item" :to="{name: 'Balance'}"><i
           class="mdi mdi-wallet text-muted fs-16 align-middle me-1"></i>
         <span class="align-middle">{{$t('user-menu.balance')}} : <b>${{user.balance}}</b></span>
       </router-link>

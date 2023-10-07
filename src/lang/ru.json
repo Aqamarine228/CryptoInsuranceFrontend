@@ -49,6 +49,7 @@
     "menu.insuranceInvoice": "Счет-фактура по страхованию",
     "menu.insuranceRequest": "Запрос на страхование",
     "menu.notifications": "Уведомления",
+    "menu.balance": "Баланс",
 
     "referrals.programTitle": "Наша реферальная программа",
     "referrals.becomeReferral": "Стать рефералом",
@@ -101,7 +102,7 @@
     "insurance.buy": "Купить",
     "insurance.selectNeededOptions": "Выберите необходимые параметры",
     "insurance.pleaseSelectOptionsFirst": "Сначала выберите параметры",
-    "insurance.buyWithPrice": "Купить {price}$",
+    "insurance.buyWithPrice": "Покрытие {coverage}$ – Цена {price}$",
     "insurance.select": "Выбрать",
     "insurance.selected": "Выбрано",
     "insurance.expiresAt": "Срок действия истекает",
@@ -160,5 +161,19 @@
     "dashboard.insuranceTitle": "Ваши активы в безопасности",
     "dashboard.insuranceText": "Вы можете подать заявку на страхование в любое время",
     "dashboard.createInsuranceRequest": "Создать запрос на страхование",
-    "dashboard.insuranceRequestApproved": "Страховка одобренна"
+    "dashboard.insuranceRequest": "Запрос на страхование",
+    "dashboard.withdrawal": "Вывод",
+
+    "balance.withdrawalRequestCreatedSuccessful": "Запрос на снятие средств создан успешно",
+    "balance.withdrawalRequests": "Запросы на снятие средств",
+    "balance.withdraw": "Вывести",
+    "balance.cryptocurrency": "Криптовалюта",
+    "balance.amountInUsd": "Сумма в долларах США для вывода",
+    "balance.addressOfWallet": "Адрес криптокошелька",
+    "balance.insufficientBalance": "Недостаточно баланса",
+    "balance.balance": "Баланс",
+    "balance.amount": "Сумма",
+    "balance.crypto_amount": "Сумма в криптовалюте",
+    "balance.status": "Статус",
+    "balance.pending": "В ожидании"
 }

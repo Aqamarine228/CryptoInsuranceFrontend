@@ -30,8 +30,14 @@
         </div>
         <b-card-body class="p-4">
           <div>
-            <h5>{{ $t('referrals.programTitle') }}!</h5>
-            <p class="text-muted">{{$t('referrals.program')}}</p>
+            <h5 class="mb-3">{{ $t('referrals.programTitle') }}!</h5>
+            <p class="text-muted">🚀 {{$t('referrals.programOne')}}</p>
+            <p class="text-muted">🔐 {{$t('referrals.programTwo')}}</p>
+            <p class="text-muted">🤝 {{$t('referrals.programThree')}}</p>
+            <p class="text-muted">💰 {{$t('referrals.programFour')}}</p>
+            <p class="text-muted">🌐 {{$t('referrals.programFive')}}</p>
+            <p class="text-muted">🚀 {{$t('referrals.programSix')}}</p>
+            <p class="text-muted">{{$t('referrals.programSeven')}}</p>
           </div>
 
           <div class="text-end">

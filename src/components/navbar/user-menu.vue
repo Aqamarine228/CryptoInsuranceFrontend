@@ -14,7 +14,7 @@ async function logOut() {
   localStorage.clear();
   sessionStorage.clear();
   router.go();
-  router.push({name: 'login'});
+  // router.push({name: 'login'});
 }
 </script>
 

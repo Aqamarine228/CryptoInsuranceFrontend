@@ -44,7 +44,7 @@ function getInsurance() {
         <p v-else>{{ $t('insurance.coverage') }}: {{insurance.coverage}}$</p>
       </div>
 
-      <ul class="list-unstyled vstack gap-3 d-flex w-100">
+      <ul class="list-unstyled vstack gap-3 d-flex w-100 mt-5">
         <b-row v-if="loading">
           <b-col v-for="option in 20" :key="option" lg="6" class="mb-1">
             <li>
@@ -55,7 +55,7 @@ function getInsurance() {
           </b-col>
         </b-row>
         <b-row v-else>
-          <b-col v-for="option in insurance.options" :key="option.id" lg="6" class="mb-1">
+          <b-col v-for="option in insurance.options" :key="option.id" lg="6" class="mb-3">
             <li>
               <div class="d-flex align-items-center">
                 <div class="flex-shrink-0 text-success me-1">

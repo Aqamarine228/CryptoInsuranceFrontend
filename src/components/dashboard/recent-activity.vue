@@ -9,6 +9,7 @@ import laravelDateToHumanReadableHM from "../../common/laravelDateToHumanReadabl
 const types = {
   insurance: "insurance",
   withdrawal: "withdrawal",
+  insurance_invoice: "insurance_invoice",
 }
 
 const recentActivity = ref([])
@@ -29,7 +30,7 @@ function getRecentActivity() {
 <template>
   <b-card no-body class="card-height-100">
     <b-card-header class="align-items-center d-flex">
-      <b-card-title class="mb-0 flex-grow-1">Recent Activity</b-card-title>
+      <b-card-title class="mb-0 flex-grow-1">{{$t('dashboard.recentActivity')}}</b-card-title>
     </b-card-header>
     <b-card-body class="p-0">
       <div data-simplebar>
@@ -55,7 +56,7 @@ function getRecentActivity() {
             <div class="d-flex align-items-center mb-3" v-if="item.type === types.insurance">
               <div class="avatar-xs flex-shrink-0">
                 <span class="avatar-title bg-light rounded-circle">
-                  <ArrowDownCircleIcon class="icon-dual-success icon-sm" />
+                  <ArrowDownCircleIcon class="icon-dual-warning icon-sm" />
                 </span>
               </div>
               <div class="flex-grow-1 ms-3">
@@ -68,6 +69,26 @@ function getRecentActivity() {
               <div class="flex-shrink-0 text-end">
                 <h6 :class="`mb-1`">
                   {{ item.coverage }}<span class="text-uppercase ms-1">USD</span>
+                </h6>
+                <p class="text-muted fs-13 mb-0">{{ laravelDateToHumanReadableHM(item.created_at) }}</p>
+              </div>
+            </div>
+            <div class="d-flex align-items-center mb-3" v-if="item.type === types.insurance_invoice">
+              <div class="avatar-xs flex-shrink-0">
+                <span class="avatar-title bg-light rounded-circle">
+                  <ArrowDownCircleIcon class="icon-dual-success icon-sm" />
+                </span>
+              </div>
+              <div class="flex-grow-1 ms-3">
+                <h6 class="fs-14 mb-1">{{ item.amount }}USD</h6>
+                <p class="text-muted fs-12 mb-0">
+                  <i class="mdi mdi-circle-medium text-success fs-15 align-middle"></i>
+                  {{$t('dashboard.assetsInsured')}}
+                </p>
+              </div>
+              <div class="flex-shrink-0 text-end">
+                <h6 :class="`mb-1`">
+                  {{$t('insurance.coverage')}}: {{ item.coverage }}<span class="text-uppercase ms-1">USD</span>
                 </h6>
                 <p class="text-muted fs-13 mb-0">{{ laravelDateToHumanReadableHM(item.created_at) }}</p>
               </div>

@@ -2,7 +2,7 @@
 import Layout from "@/layouts/main.vue";
 import PageHeader from "@/components/page-header.vue";
 import {useI18n} from "vue-i18n";
-import {onMounted, ref} from "vue";
+import {computed, onMounted, ref} from "vue";
 import axiosInstance from "@/plugins/axios";
 import backend from "@/config/backend";
 import {useRoute, useRouter} from "vue-router";
@@ -27,11 +27,23 @@ const items = [
 ]
 
 const insuranceOption = ref({})
+const maxCoverage = ref(0)
+const coverage = ref(0)
 const fieldValues = ref({})
 
+const coverageError = computed(() => coverage.value > maxCoverage.value)
+
 onMounted(() => {
-  getInsuranceOption()
+  getInsurance().then(() => {
+    getInsuranceOption()
+  });
 })
+
+function getInsurance() {
+  return axiosInstance.get(backend.insurance).then((response) => {
+    maxCoverage.value = response.coverage
+  })
+}
 
 function getInsuranceOption() {
   axiosInstance.get(backend.insuranceOption(route.params.id)).then((response) => {
@@ -43,6 +55,7 @@ function getInsuranceOption() {
 }
 
 function submit() {
+  fieldValues.value.coverage = coverage.value;
   axiosInstance.post(backend.createInsuranceRequest(route.params.id), fieldValues.value).then(() => {
     store.commit('user/INSURANCE_REQUEST_CREATED')
     router.push({name: "Insurance"})
@@ -70,6 +83,20 @@ function submit() {
           <form @submit.prevent="submit">
             <b-card-body>
               <div class="live-preview">
+                <b-row class="align-items-center">
+                  <b-col lg="12" class="mb-3">
+                    <div>
+                      <label class="form-label">{{ $t('insurance.coverage') }} <span
+                          class="text-danger">*</span></label>
+                      <input class="form-control" v-model="coverage" type="number"
+                             :required="true" :max="maxCoverage" :min="100" :class="{'is-invalid': coverageError}"
+                      >
+                      <div v-if="coverageError" class="invalid-feedback">
+                        <span>{{ $t('insurance.badCoverage') }}</span>
+                      </div>
+                    </div>
+                  </b-col>
+                </b-row>
                 <b-row class="align-items-center" v-for="(item, key) in insuranceOption.fields" :key="key">
                   <b-col lg="12" class="mb-3">
                     <div>
@@ -84,7 +111,7 @@ function submit() {
             </b-card-body>
             <b-card-footer>
               <button class="btn btn-primary w-100" type="submit">
-                {{$t('insurance-request.submit')}}
+                {{ $t('insurance-request.submit') }}
               </button>
             </b-card-footer>
           </form>

@@ -28,16 +28,18 @@ const items = [
           <b-col xl="12">
             <insurance/>
           </b-col>
+          <b-col xl="12">
+            <News />
+          </b-col>
         </b-row>
       </b-col>
       <b-col xxl="3">
         <RecentActivity />
       </b-col>
     </b-row>
-    <b-row>
-      <b-col xxl="12">
-        <News />
-      </b-col>
-    </b-row>
+<!--    <b-row>-->
+<!--      <b-col xxl="12">-->
+<!--      </b-col>-->
+<!--    </b-row>-->
   </Layout>
 </template>

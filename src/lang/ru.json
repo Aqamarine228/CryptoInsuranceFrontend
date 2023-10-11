@@ -119,6 +119,7 @@
     "insurance.notAbleToSubmitInsuranceRequest": "Вы не можете отправить новый запрос на страхование, поскольку он находится на рассмотрении",
     "insurance.more": "Больше информации",
     "insurance.coverage": "Покрытие",
+    "insurance.badCoverage": "Покрытие должно быть ниже максимального значения покрытия вашей страховки",
 
     "insurance-request.title": "Форма запроса",
     "insurance-request.submitSuccessful": "Запрос отправлен успешно",
@@ -169,8 +170,11 @@
     "dashboard.insuranceTitle": "Ваши активы в безопасности",
     "dashboard.insuranceText": "Вы можете подать заявку на страхование в любое время",
     "dashboard.createInsuranceRequest": "Создать запрос на страхование",
-    "dashboard.insuranceRequest": "Запрос на страхование",
+    "dashboard.insuranceRequest": "Выплата страховки",
     "dashboard.withdrawal": "Вывод",
+    "dashboard.recentActivity": "Последняя активность",
+    "dashboard.assetsInsured": "Активы застрахованы",
+
 
     "balance.withdrawalRequestCreatedSuccessful": "Запрос на снятие средств создан успешно",
     "balance.withdrawalRequests": "Запросы на снятие средств",

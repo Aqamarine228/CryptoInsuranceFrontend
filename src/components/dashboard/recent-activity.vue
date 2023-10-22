@@ -88,7 +88,7 @@ function getRecentActivity() {
               </div>
               <div class="flex-shrink-0 text-end">
                 <h6 :class="`mb-1`">
-                  {{$t('insurance.coverage')}}: {{ item.coverage }}<span class="text-uppercase ms-1">USD</span>
+                 {{ item.coverage }}<span class="text-uppercase ms-1">USD</span>
                 </h6>
                 <p class="text-muted fs-13 mb-0">{{ laravelDateToHumanReadableHM(item.created_at) }}</p>
               </div>

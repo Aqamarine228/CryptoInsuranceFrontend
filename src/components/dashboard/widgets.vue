@@ -47,7 +47,7 @@ function getWidgetsData() {
 </script>
 
 <template>
-  <b-col lg="4" md="6" v-for="(item, index) of widgets" :key="index">
+  <b-col v-for="(item, index) of widgets" :key="index">
     <b-card no-body>
       <b-card-body>
         <div class="d-flex align-items-center">

@@ -17,7 +17,7 @@ onMounted(() => {
 })
 
 function getInsurance() {
-  axiosInstance.get(backend.insurance).then((response) => {
+  axiosInstance.get(backend.insurances).then((response) => {
     insurance.value = response
     loading.value = false
   })
@@ -72,7 +72,7 @@ function getInsurance() {
         </ul>
 
         <div class="mt-3">
-          <router-link :to="{name: 'Insurance'}" class="w-100 btn btn-success" :class="loading ? 'disabled' : ''">
+          <router-link :to="{name: 'Insurances'}" class="w-100 btn btn-success" :class="loading ? 'disabled' : ''">
             <span v-if="loading" class="spinner-border spinner-border-sm"></span>
             <span v-else>{{ $t('dashboard.createInsuranceRequest') }}</span>
           </router-link>
@@ -101,7 +101,7 @@ function getInsurance() {
         </div>
 
         <div class="mt-3">
-          <router-link :to="{name: 'Insurance'}" class="w-100 btn btn-primary">
+          <router-link :to="{name: 'Insurances'}" class="w-100 btn btn-primary">
             {{ $t('dashboard.getInsuranceButton') }}
           </router-link>
         </div>

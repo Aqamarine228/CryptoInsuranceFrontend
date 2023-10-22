@@ -85,11 +85,35 @@ export default [
   },
   {
     path: "/insurance",
+    name: "Insurances",
+    meta: {
+      title: "Insurances",
+    },
+    component: () => import("../views/insurance/index.vue"),
+  },
+  {
+    path: "/insurance/add",
+    name: "Insurance Add",
+    meta: {
+      title: "Add Insurance",
+    },
+    component: () => import("../views/insurance/add.vue"),
+  },
+  {
+    path: "/insurance/:id",
     name: "Insurance",
     meta: {
       title: "Insurance",
     },
-    component: () => import("../views/insurance/index.vue"),
+    component: () => import("../views/insurance/show.vue"),
+  },
+  {
+    path: "/insurance/:id/information",
+    name: "Insurance Information",
+    meta: {
+      title: "Insurance Information",
+    },
+    component: () => import("../views/insurance/information.vue"),
   },
   {
     path: "/insurance/create-own",

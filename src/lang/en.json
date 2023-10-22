@@ -1,4 +1,6 @@
 {
+  "t-menu": "Menu",
+
   "login.welcomeBack": "Welcome Back",
   "login.signInToContinue": "Sign In To Continue",
   "login.email": "Email",
@@ -101,6 +103,8 @@
   "insurance-invoice.paidMessage": "Thanks for purchase, your invoice has been successfully paid. Now you can get back to Insurance page",
   "insurance-invoice.backToInsuranceButton": "Back To Insurance",
 
+  "insurance.details": "Details",
+  "insurance.information": "Information",
   "insurance.plansAndPricing": "Plans & Pricing",
   "insurance.more": "More Information",
   "insurance.off": "Off",
@@ -119,6 +123,13 @@
   "insurance.notAbleToSubmitInsuranceRequest": "You are not able to submit new insurance request because there is one on review",
   "insurance.coverage": "Coverage",
   "insurance.badCoverage": "Coverage must be lower than max coverage value of your insurance",
+  "insurance.status": "Status",
+  "insurance.active": "Active",
+  "insurance.summary": "Summary",
+  "insurance.exchangeName": "Exchange Name",
+  "insurance.exchangeId": "Exchange ID",
+  "insurance.wallet": "Wallet",
+  "insurance.chose": "Chose",
 
   "insurance-request.title": "Request Form",
   "insurance-request.submittedSuccessfully": "Request submitted successfully",

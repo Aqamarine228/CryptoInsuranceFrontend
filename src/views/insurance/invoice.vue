@@ -18,7 +18,7 @@ const title = i18n.t('menu.insuranceInvoice')
 const items = [
   {
     text: i18n.t('menu.insurance'),
-    href: {name: "Insurance"},
+    href: {name: "Insurances"},
   },
   {
     text: i18n.t('menu.insuranceInvoice'),
@@ -85,7 +85,7 @@ function getInvoice() {
                 <h5 class="fs-14 mb-0 placeholder-glow">
                   <span class="placeholder w-25" v-if="loading"></span>
                   <span id="total-amount" v-else>
-                    {{$t(`insurance-invoice.status.${invoice.status}`) }}
+                    {{ $t(`insurance-invoice.status.${invoice.status}`) }}
                   </span>
                 </h5>
               </b-col>
@@ -94,7 +94,8 @@ function getInvoice() {
           <b-card-body class="p-4 d-flex align-items-center justify-content-center" v-if="loading">
             <span class="spinner-border"></span>
           </b-card-body>
-          <unpaid :invoice-id="route.params.id" v-else-if="invoice.status !== 'paid'"/>
+          <unpaid :invoice-id="route.params.id" :invoice-max-wallets-count="invoice.insurance.max_wallets_count"
+                  v-else-if="invoice.status !== 'paid'"/>
           <paid v-else/>
         </b-card>
       </b-col>

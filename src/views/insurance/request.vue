@@ -18,7 +18,7 @@ const title = i18n.t('menu.insuranceRequest')
 const items = [
   {
     text: i18n.t('menu.insurance'),
-    href: {name: "Insurance"},
+    href: {name: "Insurances"},
   },
   {
     text: i18n.t('menu.insuranceRequest'),
@@ -40,7 +40,7 @@ onMounted(() => {
 })
 
 function getInsurance() {
-  return axiosInstance.get(backend.insurance).then((response) => {
+  return axiosInstance.get(backend.insurances).then((response) => {
     maxCoverage.value = response.coverage
   })
 }
@@ -58,7 +58,7 @@ function submit() {
   fieldValues.value.coverage = coverage.value;
   axiosInstance.post(backend.createInsuranceRequest(route.params.id), fieldValues.value).then(() => {
     store.commit('user/INSURANCE_REQUEST_CREATED')
-    router.push({name: "Insurance"})
+    router.push({name: "Insurances"})
     Swal.fire({
       title: i18n.t('insurance-request.submittedSuccessfully'),
       icon: "success",

@@ -114,7 +114,7 @@ export default {
                 </router-link>
               </li>
               <li class="nav-item">
-                <router-link :to="{name: 'Insurance'}" class="nav-link menu-link">
+                <router-link :to="{name: 'Insurances'}" class="nav-link menu-link">
                   <i class="bx bxs-buildings"></i>
                   <span> {{ $t("menu.insurance") }}</span>
                 </router-link>

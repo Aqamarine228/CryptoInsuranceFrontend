@@ -59,6 +59,14 @@ const resendEmail = async () => {
 
 const userEmail = computed(() => store.getters['user/user'].email)
 
+function logout() {
+  store.commit('auth/LOGOUT');
+  localStorage.clear();
+  sessionStorage.clear();
+  router.go();
+
+}
+
 </script>
 
 <template>
@@ -99,6 +107,11 @@ const userEmail = computed(() => store.getters['user/user'].email)
                 <b-button type="button" variant="success" class="w-100" :disabled="loading" @click="getUser">
                   {{ $t('verify-email.confirm') }}
                 </b-button>
+              </div>
+              <div class="text-center mt-1">
+                <a @click.prevent="logout" href="#" class="text-decoration-underline">
+                  {{$t('login.logout')}}
+                </a>
               </div>
             </div>
           </b-card-body>

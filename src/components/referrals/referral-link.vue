@@ -9,7 +9,7 @@ const store = useStore();
 const tooltip = ref("copy")
 
 const registerUrl = computed(() => {
-  return location.host + router.resolve({name: "Register"}).fullPath + "?inviter_id=" + store.getters['user/referralId']
+  return `https://${location.host}${process.env.VUE_APP_BASE_ROUTE}${router.resolve({name: "Register"}).fullPath}?inviter_id=${store.getters['user/referralId']}`
 })
 
 async function copyText() {
@@ -29,7 +29,7 @@ function focusLeft() {
         <b-col>
           <div class="py-4 px-3">
             <h5 class="text-muted text-uppercase fs-13">
-              {{ $t('referrals.referralLink')}}
+              {{ $t('referrals.referralLink') }}
             </h5>
             <div class="d-flex align-items-center">
               <div class="flex-shrink-0">

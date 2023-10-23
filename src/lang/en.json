@@ -11,6 +11,7 @@
   "login.signUp": "Sign Up",
   "login.dontHaveAnAccount": "Don't have an account",
   "login.pleaseWait": "Please Wait",
+  "login.logout": "Logout",
 
   "register.signUp": "Sign up",
   "register.signIn": "Sign In",

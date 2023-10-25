@@ -2,13 +2,14 @@
 import {ref, defineProps, computed} from "vue";
 import axiosInstance from "@/plugins/axios";
 import backend from "@/config/backend";
+import {useI18n} from "vue-i18n";
+
+const i18n = useI18n()
 
 const props = defineProps({
   invoiceId: String,
   invoiceMaxWalletsCount: Number,
 })
-
-const currencies = ['USDT', 'BTC', 'USDC', 'LTC', 'TRX'];
 
 const loading = ref(false)
 const invoiceHref = ref("")
@@ -58,28 +59,35 @@ function createCoinbaseInvoice() {
   <b-card-body class="p-4 border-top border-top-dashed">
     <b-row>
       <b-col md="4">
-        <label>{{ $t('insurance-information.exchangeName') }} <span
+        <label>{{ $t('insurance.exchangeName') }} <span
             class="text-danger">*</span></label>
         <input class="form-control" type="text" v-model="exchangeName">
       </b-col>
       <b-col md="8">
-        <label>{{ $t('insurance-information.exchangeId') }} <span
+        <label>{{ $t('insurance.exchangeId') }} <span
             class="text-danger">*</span></label>
         <input class="form-control" type="text" v-model="exchangeId">
       </b-col>
     </b-row>
     <b-row>
       <b-col md="12" v-for="id in props.invoiceMaxWalletsCount" :key="id" class="mt-3">
-        <label>{{ $t('insurance-information.wallet') }} {{ id }} <span
+        <label>{{ $t('insurance.wallet') }} {{ id }} <span
             class="text-danger" v-if="id === 1">*</span></label>
         <b-row>
           <b-col md="2" style="max-width: 130px">
-            <select class="form-select" v-model="walletCurrencies[id]">
-              <option v-for="(currency, key) in currencies" :key="key">{{ currency }}</option>
-            </select>
+            <input
+                class="form-control"
+                type="text" v-model="walletCurrencies[id]"
+                :placeholder="i18n.t('insurance.network')"
+            >
           </b-col>
           <b-col>
-            <input class="form-control" type="text" v-model="walletValues[id]" :disabled="!walletCurrencies[id]">
+            <input
+                class="form-control"
+                type="text"
+                v-model="walletValues[id]" :disabled="!walletCurrencies[id]"
+                :placeholder="i18n.t('insurance.value')"
+            >
           </b-col>
         </b-row>
       </b-col>

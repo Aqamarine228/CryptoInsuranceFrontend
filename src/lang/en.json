@@ -131,6 +131,8 @@
   "insurance.exchangeId": "Exchange ID",
   "insurance.wallet": "Wallet",
   "insurance.chose": "Chose",
+  "insurance.network": "Network",
+  "insurance.value": "Value",
 
   "insurance-request.title": "Request Form",
   "insurance-request.submittedSuccessfully": "Request submitted successfully",

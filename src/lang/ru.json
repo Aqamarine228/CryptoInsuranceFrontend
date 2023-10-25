@@ -130,6 +130,8 @@
     "insurance.wallet": "Кошелек",
     "insurance.chose": "Выбрать",
     "insurance.information": "Информация",
+    "insurance.network": "Сеть",
+    "insurance.value": "Значение",
 
     "insurance-request.title": "Форма запроса",
     "insurance-request.submitSuccessful": "Запрос отправлен успешно",
